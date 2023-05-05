@@ -14,7 +14,7 @@
 
 
 
-        public function selectBitacoras()
+        public function selectBitacoras() //funcion que traer los datos de la base de datos para mostrarlo en data table
 		{
 			$sql = "SELECT  id,
 							accion,
@@ -23,8 +23,8 @@
 							MODIFICADO_POR,
 							FECHA_MODIFICADO,
 							status
-				FROM tbl_bitacora WHERE status!=0 ";
-				$request = $this->select_all($sql);
+				FROM tbl_bitacora WHERE status!=0 ";//datos que sera traidos para luego mostrarlos
+				$request = $this->select_all($sql); 
 			return $request;
 		}
 

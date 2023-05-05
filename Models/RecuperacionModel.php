@@ -4,7 +4,7 @@
 	{
 		private $intCOD_PRREGUNTA;
 		private $intCOD_USUARIO;
-		private $strPREGUNTA;
+		private $strPREGUNTA; //variables globales 
 		private $strRESPUESTA;
 
 		public function __construct()
@@ -16,7 +16,7 @@
 {
     $this->intCOD_USUARIO = $COD_USUARIO;
     $this->strPREGUNTA = $PREGUNTA;
-    $this->strRESPUESTA = $RESPUESTA;
+    $this->strRESPUESTA = $RESPUESTA; //funcion de reseto de datos para validacion y recuperacion de datops
     $sql = "SELECT COD_USUARIO,status FROM tbl_ms_preguntas_por_usuario WHERE 
             COD_USUARIO = '$this->intCOD_USUARIO' and 
             PREGUNTA = $this->strPREGUNTA and 

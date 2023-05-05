@@ -9,7 +9,7 @@ class HistorialModel extends Mysql
         parent::__construct();
     }
 
-    public function selectHistorial()
+    public function selectHistorial() //funcion de mostrar datos en la data table
     {
         $sql = "SELECT  id,
 							accion,

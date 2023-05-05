@@ -1,0 +1,21 @@
+Informacion Requerida en el Programa de Empresa Generica 
+
+para poder ingresar al sistema se requieren estos datos:
+Usuario : thegers
+Contraseña: 123456
+
+Este usuario es el SuperAdministrador la cual tiene todas las funciones por predeterminado.
+
+Para poder jecutar neceista colocar la carpeta del sistema en la carptea htdocs, por la cual necesitara xampp para
+poder obtener dicha carpeta.
+Segundo requisito es ejecutar e insertar la base de datos la cual esta en la carpeta del drive y en la carpeta del 
+codigo, llamado de la manera: bd_empresa_generica.sql
+
+
+
+********Advertencia**********
+Todas las funciones del sistema se encuentran en una fase muy temprana, se sigue en proceso de 
+incoporar nuevas funciones, la unica excepcion de que en el sistema no funcionara es la recuperacion
+de contraseña por medio de correo electronico, esta solamente funciona mediante hosting por temas del smtp
+
+

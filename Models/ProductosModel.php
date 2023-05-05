@@ -20,7 +20,7 @@ class ProductosModel extends Mysql
 		parent::__construct();
 	}
 
-	public function selectProductos()
+	public function selectProductos() //funcion de seleccion de datos
 	{
 		$sql = "SELECT p.COD_PRODUCTO,
 		                    p.BARCODIGO,
@@ -40,11 +40,12 @@ class ProductosModel extends Mysql
 		return $request;
 	}
 
-	public function insertProducto(string $NOMBRE_PRODUCTO, int $BARCODIGO, int $COD_CATEGORIA, string $DESCRIPCION, int $PRECIO, int $PrecioVenta,int $EXISTENCIA,STRING $CREADO_POR, int $status )
+	public function insertProducto(string $NOMBRE_PRODUCTO, int $BARCODIGO, int $COD_CATEGORIA, string $DESCRIPCION, 
+	int $PRECIO, int $PrecioVenta,int $EXISTENCIA,STRING $CREADO_POR, int $status )//inserccion de datos por parametros
 	{
 		$this->strNOMBRE_PRODUCTO = $NOMBRE_PRODUCTO;
 		$this->strBarcodigo = $BARCODIGO;
-		$this->intCOD_CATEGORIA = $COD_CATEGORIA;
+		$this->intCOD_CATEGORIA = $COD_CATEGORIA; //equivalencia con variable globales con los parametros
 		$this->strDESCRIPCION = $DESCRIPCION;
 		$this->intPRECIO = $PRECIO;
 		$this->intPRECIOVENTA =$PrecioVenta;
@@ -65,19 +66,19 @@ class ProductosModel extends Mysql
 														CREADO_POR,
 														status
 														) 
-								  VALUES(?,?,?,?,?,?,?,?,?)";
+								  VALUES(?,?,?,?,?,?,?,?,?)"; //instancia sql para insertar datoos
 			$arrData = array(
 				$this->strNOMBRE_PRODUCTO,
 				$this->strBarcodigo,
 				$this->intCOD_CATEGORIA,
 				$this->strDESCRIPCION,
 				$this->intPRECIO,
-				$this->intPRECIOVENTA,
+				$this->intPRECIOVENTA, //datos que sera usados para insertar en la tabla de la BDD
 				$this->intEXISTENCIA,
 				$this->strCREADO_POR,
 				$this->intESTADO
 			);
-			$request_insert = $this->insert($query_insert, $arrData);
+			$request_insert = $this->insert($query_insert, $arrData); //ejecucion del sql
 			$return = $request_insert;
 		} else {
 			$return = "exist";
@@ -85,7 +86,7 @@ class ProductosModel extends Mysql
 		return $return;
 	}
 
-	public function selectProducto(int $COD_PRODUCTO)
+	public function selectProducto(int $COD_PRODUCTO)//funcion que trae los datos para luego sder mostrados
 	{
 		$this->intCOD_PRODUCTO = $COD_PRODUCTO;
 		$sql = "SELECT p.COD_PRODUCTO,
@@ -101,12 +102,12 @@ class ProductosModel extends Mysql
 					FROM tbl_producto p
 					INNER JOIN tbl_categoria c
 					ON p.COD_CATEGORIA = c.idcategoria
-					WHERE COD_PRODUCTO = $this->intCOD_PRODUCTO";
-		$request = $this->select($sql);
+					WHERE COD_PRODUCTO = $this->intCOD_PRODUCTO"; //instancia de sql que tgrae todos los datos
+		$request = $this->select($sql); //ejecucion de sql
 		return $request;
 
 	}
-	public function updateProducto(
+ 	public function updateProducto(//funcion que actualiza los datos 
 		int $COD_PRODUCTO, string $BARCODIGO ,string $NOMBRE_PRODUCTO, int $COD_CATEGORIA,
 		string $DESCRIPCION, int $PRECIO, int $PrecioVenta,int $EXISTENCIA, String $MODIFICADO_POR, string $FECHA_MODIFICACION,int $status
 	) {
@@ -114,7 +115,7 @@ class ProductosModel extends Mysql
 		$this->strBarcodigo = $BARCODIGO;
 		$this->strNOMBRE_PRODUCTO = $NOMBRE_PRODUCTO;
 		$this->intCOD_CATEGORIA = $COD_CATEGORIA;
-		$this->strDESCRIPCION = $DESCRIPCION;
+		$this->strDESCRIPCION = $DESCRIPCION; //equivalencia de datos con variables globales
 		$this->intPRECIO = $PRECIO;
 		$this->intPRECIOVENTA = $PrecioVenta;
 		$this->intEXISTENCIA = $EXISTENCIA;
@@ -139,7 +140,7 @@ class ProductosModel extends Mysql
 						FECHA_MODIFICACION=?,
 						status=?
 							
-						WHERE COD_PRODUCTO = $this->intCOD_PRODUCTO ";
+						WHERE COD_PRODUCTO = $this->intCOD_PRODUCTO "; //instancia sql 
 			$arrData = array(
 				$this->strBarcodigo,
 				$this->strNOMBRE_PRODUCTO,
@@ -147,7 +148,7 @@ class ProductosModel extends Mysql
 				$this->strDESCRIPCION,
 				$this->intPRECIO,
 				$this->intPRECIOVENTA,
-				$this->intEXISTENCIA,
+				$this->intEXISTENCIA, //orden que seran actualizados los datos
 				$this->strMODIFICADO_POR,
 				$this->dateFECHA_MODIFICADO,
 				$this->intESTADO,
@@ -162,7 +163,7 @@ class ProductosModel extends Mysql
 		return $return;
 	}
 
-	public function deleteProducto(int $COD_PRODUCTO)
+	public function deleteProducto(int $COD_PRODUCTO) //funcion de eliminar el producto
 	{
 		$this->intCOD_PRODUCTO = $COD_PRODUCTO;
 		$sql = "UPDATE tbl_producto SET status = ? WHERE COD_PRODUCTO = $this->intCOD_PRODUCTO ";
