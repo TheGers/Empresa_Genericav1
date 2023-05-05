@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,9 @@
     <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/css/factura.css'; ?>">
 </head>
 
-<body>
+<body> 
+    <!-- CREADO POR EDWIN JUANEZ -->
+    <!-- AQUI TRAIGO LO QUE ES LOS DATOS DE LA EMPRESA Y TAMBIEN INFORMACION DE LA FACTURA -->
     <table id="datos-empresa">
         <tr>
             <td class="logo"><img src="<?php echo BASE_URL . '/assets/images/logo.png'; ?> " alt=""></td>
@@ -29,7 +32,7 @@
 
         </tr>
     </table>
-
+   <!-- AQUI TRAIGO LO QUE SON LOS DATOS DEL CLIENTE -->
     <h5 class="title">Datos del Cliente</h5>
     <table id="container-info">
         <tr>

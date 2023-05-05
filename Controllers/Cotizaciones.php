@@ -1,3 +1,4 @@
+
 <?php
 require 'vendor/autoload.php'; 
 
@@ -8,6 +9,7 @@ use function PHPSTORM_META\type;
 class Cotizaciones extends Controllers
 {
 	private $idPersona;
+	// ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
 	// -----------------------------------------------------CONSTRUCTOR-------------------------------------------------------
 
 	public function __construct()
@@ -35,7 +37,7 @@ class Cotizaciones extends Controllers
 		$this->views->getView($this, "cotizaciones", $data);
 	}
 
-	// -------------------------------------------------------OBTENER---------------3333333------------------------------------------
+	// -------------------------------------------------------OBTENER DATOS EN LA TABLA-------------------------------------------------------
 
 	public function getCotizaciones()
 {
@@ -144,7 +146,7 @@ class Cotizaciones extends Controllers
 		die();
 	}
 
-	// -----------------------------------------------------------------kkk------------------------------------------------------------
+	// -------------------------------------------------------------REGISTRAR COTIZACION---------------------------------------------------------
 
 	public function registraCotizacion()
 	{
@@ -188,7 +190,7 @@ class Cotizaciones extends Controllers
 		die();
 	}
 
-	//------------------------------------------------Bayron-------------------------------------------------
+	//---------------------------------------PARA EL PDF -------------------------------------------------
 	public function reporte($datos)
 	{
 		$array = explode(',', $datos);
@@ -224,7 +226,7 @@ class Cotizaciones extends Controllers
 		$dompdf->stream('Reporte_cotizacion.pdf', array('Attachment' => false));
 	}
 
-	// /------------------------------------------------ANULAR LA COTIZACION Bayron-------------------------------------------------
+	// /------------------------------------------------ANULAR LA COTIZACION-------------------------------------------------
 	
 	public function anular($COD_COTIZACION){
 	if (isset($_GET) && is_numeric($COD_COTIZACION)) {

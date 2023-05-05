@@ -1,8 +1,9 @@
+
 <?php
 
-class CotizacionesModel extends Mysql 
+class CotizacionesModel extends Mysql
 {
-    
+
 
     private $intCOD_COTIZACION;
     private $intCOD_PERSONA;
@@ -11,6 +12,7 @@ class CotizacionesModel extends Mysql
     private $intTOTAL;
     private $intstatus;
 
+    // ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
     // -----------------------------------------------------CONSTRUCTOR-------------------------------------------------------
     public function __construct()
     {
@@ -35,7 +37,7 @@ class CotizacionesModel extends Mysql
         return $this->insert($sql, $array);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------------------
+    // ---------------------------------------------SELECCIONAR DATOS DE LA TABLA COTIZACIONES-------------------------------------------
 
     public function selectCotizaciones()
     {
@@ -54,7 +56,7 @@ class CotizacionesModel extends Mysql
         return $request;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------------------
+    // --------------------------------------------------PARA INSERTAR DATOS EN LA TABLA---------------------------------------------------
 
     public function insertCotizaciones(
         int $intCOD_COTIZACION,
@@ -99,6 +101,7 @@ class CotizacionesModel extends Mysql
     }
 
     // -----------------------------------------------------------------------------------------------------------------------------
+
     public function selectCotizacion(int $intCOD_COTIZACION)
     {
         $sql = "SELECT c.COD_COTIZACION,
@@ -117,7 +120,7 @@ class CotizacionesModel extends Mysql
     }
 
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - EDWIN JUANEZ --------------------------------------------------
 
     public function getEmpresa()
     {
@@ -125,7 +128,7 @@ class CotizacionesModel extends Mysql
         return $this->select($sql);
     }
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - EDWIN JUANEZ --------------------------------------------------
     public function getCotizacion($COD_COTIZACION)
     {
         $sql = "SELECT c.*, p.NOMBRE, p.IDENTIFICACION FROM tbl_cotizaciones c INNER JOIN tbl_personas p ON c.COD_PERSONA = p.COD_PERSONA WHERE c.COD_COTIZACION = $COD_COTIZACION";
@@ -133,11 +136,10 @@ class CotizacionesModel extends Mysql
     }
 
 
-    public function anular($COD_COTIZACION){
+    public function anular($COD_COTIZACION)
+    {
         $sql = "UPDATE tbl_cotizaciones SET status = ? WHERE COD_COTIZACION = ? ";
-        $array = array(0,$COD_COTIZACION);
-        return $this->update($sql,$array);
-      
-    
+        $array = array(0, $COD_COTIZACION);
+        return $this->update($sql, $array);
     }
 }

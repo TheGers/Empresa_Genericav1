@@ -1,6 +1,7 @@
 let tableConfiguracion;
 let rowTable = "";
 
+//    ----------------------------------- CREADO POR EDWIN JUANEZ -----------------------------------
 // ---------------------------------- PARA ABRIR EL MODAL ---------------------------------
 
 function openModal() {

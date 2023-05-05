@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en"> cotizacion
 
@@ -8,6 +9,9 @@
     <title><?php echo $data['title']; ?> </title>
     <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/css/ticked.css'; ?>">
 </head>
+
+<!-- CREADO POR EDWIN JUANEZ -->
+<!-- AQUI TRAIGO LO QUE ES LOS DATOS DE LA EMPRESA Y TAMBIEN INFORMACION DEL TCKED -->
 
 <body>
     <img src="<?php echo BASE_URL . '/assets/images/logo.png'; ?> " alt="">
@@ -51,7 +55,7 @@
     <div class="mensaje">
         <?php echo $data['empresa']['mensaje']; ?>
         <?php if ($data['cotizacion']['status'] == 0) { ?>
-            <h1>cotizacion Anulada</h1>      
+            <h1>cotizacion Anulada</h1>
         <?php } ?>
     </div>
 </body>

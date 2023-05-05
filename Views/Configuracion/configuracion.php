@@ -1,4 +1,6 @@
+
 <?php
+// ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
 headerAdmin($data);
 getModal('modalConfiguracion', $data);
 ?>
@@ -16,6 +18,9 @@ getModal('modalConfiguracion', $data);
             <li class="breadcrumb-item"><a href="<?= base_url(); ?>/configuracion"><?= $data['page_title'] ?></a></li>
         </ul>
     </div>
+
+    <!-- ESTA ES NUESTRA TABLA DONDE SE REFLEJAN LOS DATOS DEL CAI Y LO QUE PIDE LA SAR PARA FACTURAR -->
+
     <div class="row">
         <div class="col-md-12">
             <div class="tile">

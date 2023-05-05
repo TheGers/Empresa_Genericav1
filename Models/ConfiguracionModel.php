@@ -11,6 +11,7 @@ class ConfiguracionModel extends Mysql
     private $intStatus;
     public $intIdConfiguracion;
 
+    // ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
     // ---------------------------------- CONSTRUCTOR ---------------------------------
 
     public function __construct()
@@ -68,7 +69,7 @@ class ConfiguracionModel extends Mysql
         return $return;
     }
 
-    // ---------------------------------- M ---------------------------------
+    // ----------------------SELECCIONAR DATOS DE LA TABLA DE CONFIGURACION ---------------------------------
 
     public function selectConfiguracion(int $idConfiguracion)
     {

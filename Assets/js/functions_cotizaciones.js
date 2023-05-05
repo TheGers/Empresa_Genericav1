@@ -6,6 +6,7 @@ $(document).on("focusin", function (e) {
   }
 });
 
+//    ----------------------------------- CREADO POR EDWIN JUANEZ -----------------------------------
 //    ----------------------------------- BOTONES Y DECLARACION DE COLUMNAS -----------------------------------
 
 tableCotizaciones = $("#tableCotizaciones").DataTable({
@@ -42,7 +43,7 @@ tableCotizaciones = $("#tableCotizaciones").DataTable({
       titleAttr: "Esportar a PDF",
       className: "btn btn-danger",
     },
-   
+
   ],
   resonsieve: "true",
   bDestroy: true,
@@ -50,7 +51,7 @@ tableCotizaciones = $("#tableCotizaciones").DataTable({
   order: [[0, "desc"]],
 });
 
-// -------------------------------------------------CAPTURACION - JAHIR----------------------------------------------------
+// -------------------------------------------------CAPTURACION - EDWIN JUANEZ----------------------------------------------------
 
 const inputBuscarCodigo = document.querySelector("#buscarProductoCodigo");
 const inputBuscarNombre = document.querySelector("#buscarProductoNombre");
@@ -118,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       serie.focus();
     },
   });
-  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - JAHIR-------------------------------------------
+  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - EDWIN JUANEZ-------------------------------------------
   $("#buscarProductoNombre").autocomplete({
     source: function (request, response) {
       $.ajax({
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - JAHIR------------------------------------------
+// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - EDWIN JUANEZ------------------------------------------
 
 function buscarProducto(valor) {
   const url = base_url + "/productos/buscarPorCodigo/" + valor;
@@ -241,7 +242,7 @@ function fntPersonas() {
   }
 }
 
-// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - JAHIR----------------------------------------------
+// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - EDWIN JUANEZ----------------------------------------------
 
 function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   if (localStorage.getItem("posCotizacion") == null) {
@@ -268,7 +269,7 @@ function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   mostrarProducto();
 }
 
-// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - JAHIR--------------------------
+// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - EDWIN JUANEZ--------------------------
 
 function alertaPersonalizada(type, msg) {
   Swal.fire({
@@ -281,7 +282,7 @@ function alertaPersonalizada(type, msg) {
   });
 }
 
-// ------------------------------------CARGAR PRODUCTOS - JAHIR----------------------------------
+// ------------------------------------CARGAR PRODUCTOS - EDWIN JUANEZ----------------------------------
 
 function mostrarProducto() {
   if (localStorage.getItem("posCotizacion") != null) {
@@ -321,7 +322,7 @@ function mostrarProducto() {
   }
 }
 
-// ------------------------------------BTN ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------BTN ELIMINAR PRODUCTO - EDWIN JUANEZ------------------------------------------
 
 function btneliminarProducto() {
   let lista = document.querySelectorAll(".btnEliminar");
@@ -334,7 +335,7 @@ function btneliminarProducto() {
   }
 }
 
-// ------------------------------------ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------ELIMINAR PRODUCTO - EDWIN JUANEZ------------------------------------------
 
 function eliminarProducto(idProducto) {
   for (let i = 0; i < listaCarrito.length; i++) {
@@ -372,7 +373,7 @@ function cambiarCantidad(COD_PRODUCTO, EXISTENCIA) {
   mostrarProducto();
 }
 
-//------------------------------------VER REPORTE DE LA COMPRA-------------------------
+//------------------------------------VER REPORTE DE LA COTIZACION-------------------------
 
 function verReporte(COD_COTIZACION) {
   Swal.fire({

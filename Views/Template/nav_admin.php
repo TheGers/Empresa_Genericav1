@@ -2,8 +2,7 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
 
-    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="<?= media(); ?>/images/avatar.png"
-            alt="User Image">
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="<?= media(); ?>/images/avatar.png" alt="User Image">
         <div>
             <p class="app-sidebar__user-name">
                 <?= $_SESSION['userData']['nombres']; ?>
@@ -14,6 +13,9 @@
         </div>
     </div>
     <ul class="app-menu">
+
+    <!-- -------------------------------------------- DASHBOARD --------------------------------------------- -->
+
         <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?>
             <li>
                 <a class="app-menu__item" href="<?= base_url(); ?>/dashboard">
@@ -22,6 +24,8 @@
                 </a>
             </li>
         <?php } ?>
+
+        <!-- -------------------------------------------- PERMISOS --------------------------------------------- -->
 
         <?php if (!empty($_SESSION['permisos'][2]['r']) || !empty($_SESSION['permisos'][13]['r'])) { ?>
             <li class="treeview">
@@ -60,21 +64,28 @@
                     <span class="app-menu__label">Tienda</span>
                     <i class="treeview-indicator fa fa-angle-right"></i>
                 </a>
+
                 <ul class="treeview-menu">
+
+                    <!-- -------------------------------------------- PRODUCTOS --------------------------------------------- -->
+
                     <?php if (!empty($_SESSION['permisos'][4]['r'])) { ?>
                         <li><a class="treeview-item" href="<?= base_url(); ?>/productos"><i class="icon fa fa-circle-o"></i>
                                 Productos</a></li>
                     <?php } ?>
 
+                    <!-- -------------------------------------------- CATEGORIAS --------------------------------------------- -->
+
                     <?php if (!empty($_SESSION['permisos'][11]['r'])) { ?>
                         <li><a class="treeview-item" href="<?= base_url(); ?>/categorias"><i class="icon fa fa-circle-o"></i>
                                 Categorías</a></li>
                     <?php } ?>
+
                 </ul>
             </li>
         <?php } ?>
 
-    <!--     <?php if (!empty($_SESSION['permisos'][18]['r']) || !empty($_SESSION['permisos'][19]['r'])) { ?>
+        <!--     <?php if (!empty($_SESSION['permisos'][18]['r']) || !empty($_SESSION['permisos'][19]['r'])) { ?>
             <li class="treeview">
                 <a class="app-menu__item" href="#" data-toggle="treeview">
                     <i class="app-menu__icon fa fa-box" aria-hidden="true"></i>
@@ -95,6 +106,8 @@
             </li>
         <?php } ?> -->
 
+        <!-- -------------------------------------------- COMPRAS --------------------------------------------- -->
+
         <?php if (!empty($_SESSION['permisos'][5]['r'])) { ?>
             <li>
             <li><a class="app-menu__item" href="<?= base_url(); ?>/compras">
@@ -102,14 +115,15 @@
                     <span class="app-menu__label">Compras</span></a></li>
         <?php } ?>
 
+        <!-- -------------------------------------------- VENTAS --------------------------------------------- -->
+
         <?php if (!empty($_SESSION['permisos'][6]['r'])) { ?>
             <li><a class="app-menu__item" href="<?= base_url(); ?>/ventas">
                     <i class="app-menu__icon fa fa-dollar"></i>
                     <span class="app-menu__label">Ventas</span></a></li>
-
         <?php } ?>
 
-        <!-- -------------------------------------------- INVENTARIOS --------------------------------------------- -->
+        <!-- -------------------------------------------- COTIZACIONES --------------------------------------------- -->
 
         <?php if (!empty($_SESSION['permisos'][21]['r'])) { ?>
             <li><a class="app-menu__item" href="<?= base_url(); ?>/cotizaciones">
@@ -118,11 +132,12 @@
 
         <?php } ?>
 
+        <!-- -------------------------------------------- INVENTARIOS --------------------------------------------- -->
+
         <?php if (!empty($_SESSION['permisos'][22]['r'])) { ?>
             <li><a class="app-menu__item" href="<?= base_url(); ?>/inventarios">
                     <i class="app-menu__icon fa fa-building"></i>
                     <span class="app-menu__label">Inventarios</span></a></li>
-
         <?php } ?>
 
         <?php if (
@@ -162,10 +177,13 @@
                                 Empresa</a></li>
                     <?php } ?>
 
+                    <!-- --------------------------------------------CONFIGURACION CAI --------------------------------------------- -->
+
                     <?php if (!empty($_SESSION['permisos'][20]['r'])) { ?>
                         <li><a class="treeview-item" href="<?= base_url(); ?>/configuracion"><i class="icon fa fa-circle-o"></i>
                                 Configuracion</a></li>
                     <?php } ?>
+
                 </ul>
             </li>
         <?php } ?>

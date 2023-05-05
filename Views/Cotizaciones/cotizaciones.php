@@ -1,4 +1,6 @@
+
 <?php
+// ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
 headerAdmin($data); 
 ?>
 <main class="app-content">
@@ -24,6 +26,7 @@ headerAdmin($data);
             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Historial</a>
         </li>
     </ul>
+
     <!-- ----------------------- FORMULARIO DE cotizaciones /------------------------- -->
     <div class="card">
         <div class="tab-content" id="pills-tabContent">
@@ -136,6 +139,8 @@ headerAdmin($data);
                     </form>
                 </div>
             </div>
+
+            <!-- TABLA DE LAS COTIZACIONES PARA VER EL HISTORIAL -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-12">
