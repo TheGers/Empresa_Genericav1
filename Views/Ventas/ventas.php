@@ -1,6 +1,3 @@
-<!-- -----------------------Vista de las ventas o salidas de productos en el sistema--------------------------->
-<!-- -----------------------Creado por Edwin Juanez--------------------------->
-
 <?php
 headerAdmin($data);
 ?>

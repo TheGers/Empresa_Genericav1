@@ -1,5 +1,4 @@
-<!-- -----------------------Vista de las compras o entradas de productos en el sistema--------------------------->
-<!-- -----------------------Creado por Bayron Meraz--------------------------->
+
 <?php
 headerAdmin($data);
 ?>
@@ -108,7 +107,7 @@ headerAdmin($data);
 
                                             </ul>
                                         </div>
-                                        <!-- input para llenar con datos de usuario que realice la compra -->
+                                        <!-- input para llenar con datos de usuario que realice la compras -->
                                         <div class="col-md-4">
                                             <label>Usuario</label>
                                             <div class="input-group mb-2">
@@ -154,6 +153,7 @@ headerAdmin($data);
                 </div>
             </div>
             <!-- Tabla que muestra los registrsos de las compras que se han ingresado en el sistema -->
+
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-12">
@@ -186,12 +186,10 @@ headerAdmin($data);
         </div>
 
     </div>
-
-<!-- -----------------------Vista de las compras o entradas de productos en el sistema--------------------------->
-<!-- -----------------------Creado por Bayron Meraz--------------------------->
-
-
     </div>
 </main>
 
 <?php footerAdmin($data); ?>
+
+<!-- -----------------------Vista de las compras o entradas de productos en el sistema--------------------------->
+<!-- -----------------------Creado por Bayron Meraz--------------------------->

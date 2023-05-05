@@ -1,6 +1,3 @@
-<!-- -----------------------Controlador para las Ventas--------------------------->
-<!-- -----------------------Creado por Edwin Juanez--------------------------->
-
 <?php
 require 'vendor/autoload.php';
 

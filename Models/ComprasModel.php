@@ -1,6 +1,3 @@
-<!-- -----------------------Modelo para las compras--------------------------->
-<!-- -----------------------Creado por Bayron Meraz--------------------------->
-
 <?php
 
 class ComprasModel extends Mysql

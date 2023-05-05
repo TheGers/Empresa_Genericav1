@@ -1,5 +1,3 @@
-// -------------------------------------------------CAPTURACION DE LA FUNCION COMPRA- BAYRON----------------------------------------------------
-
 const inputBuscarCodigo = document.querySelector("#buscarProductoCodigo");
 const inputBuscarNombre = document.querySelector("#buscarProductoNombre");
 const barcode = document.querySelector("#barcode");

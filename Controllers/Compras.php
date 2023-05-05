@@ -1,6 +1,3 @@
-<!-- -----------------------Controlador para las compras--------------------------->
-<!-- -----------------------Creado por Bayron Meraz--------------------------->
-
 <?php
 require 'vendor/autoload.php';
 

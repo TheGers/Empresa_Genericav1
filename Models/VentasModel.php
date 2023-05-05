@@ -1,6 +1,3 @@
-<!-- -----------------------Modelo para las ventas--------------------------->
-<!-- -----------------------Creado por Edwin Juanez--------------------------->
-
 <?php
 
 class VentasModel extends Mysql

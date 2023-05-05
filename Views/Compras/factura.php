@@ -1,6 +1,3 @@
-<!-- -----------------------Formato de impresion para las compras--------------------------->
-<!-- -----------------------Creado por Bayron Meraz--------------------------->
-
 <!DOCTYPE html>
 <html lang="en">
 
