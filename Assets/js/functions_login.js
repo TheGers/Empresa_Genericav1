@@ -1,8 +1,29 @@
+// -----------------------------------------------------------------------
+// 	Universidad Nacional Autonoma de Honduras (UNAH)
+// 		Facultad de Ciencias Economicas
+// 	Departamento de Informatica administrativa
+//          Analisis, Programacion y Evaluacion de Sistemas
+//                     Primer Periodo 2023
+// Equipo:
+// Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+// Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+// Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+// Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+// Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+// Catedratico:
+// Lic. Karla Melisa Garcia Pineda 
+// ---------------------------------------------------------------------
+// Programa:         Modulo de Login
+// Fecha:             23-febrero-2023
+// Programador:       Elsy Maradiaga Y Gerson Garcia
+// descripcion:      Modulo para iniciar sesion y recuperar contraseña
+
+
 $('.login-content [data-toggle="flip"]').click(function() {
 	$('.login-box').toggleClass('flipped');
 	return false;
 });
-
+//seccion que se utiliza para ingresar al sistema mediante login
 var divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 	if(document.querySelector("#formLogin")){
@@ -14,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			let strPassword = document.querySelector('#txtPassword').value;
 
 			if(strUsername == "" || strPassword == "")
-			{
+			{//validar que llene los datos
 				swal.fire("Por favor", "Escribe un  usuario y una contraseñaa.", "error");
 				return false;
 			}else{
@@ -44,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			}
 		}
 	}
+	//formato para el envio de recuperacion por correo
 	if(document.querySelector("#formRecetPass")){		
 		let formRecetPass = document.querySelector("#formRecetPass");
 		formRecetPass.onsubmit = function(e) {
@@ -92,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			}
 		}
 	}
-
+//seccion que restablece la contraseña anterior y pone una nueva 
 	if(document.querySelector("#formCambiarPass")){
 		let formCambiarPass = document.querySelector("#formCambiarPass");
 		formCambiarPass.onsubmit = function(e) {

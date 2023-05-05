@@ -1,4 +1,24 @@
 <?php 
+// -----------------------------------------------------------------------
+// 	Universidad Nacional Autonoma de Honduras (UNAH)
+// 		Facultad de Ciencias Economicas
+// 	Departamento de Informatica administrativa
+//          Analisis, Programacion y Evaluacion de Sistemas
+//                     Primer Periodo 2023
+// Equipo:
+// Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+// Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+// Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+// Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+// Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+// Catedratico:
+// Lic. Karla Melisa Garcia Pineda 
+// ---------------------------------------------------------------------
+// Programa:         Modulo de Login
+// Fecha:             23-febrero-2023
+// Programador:       Elsy Maradiaga Y Gerson Garcia
+// descripcion:      Modulo para iniciar sesion y recuperar contraseña
+
 
 	class Login extends Controllers{
 		public function __construct()
@@ -10,7 +30,7 @@
 			}
 			parent::__construct();
 		}
-
+//funcion general
 		public function login()
 		{
 			$data['page_tag'] = "Login ";
@@ -20,7 +40,7 @@
 			$this->views->getView($this,"login",$data);
 		
 		}
-
+// funcion para Login
 		public function loginUser(){
 			//dep($_POST);
 			if($_POST){
@@ -46,10 +66,6 @@
 							} else {
 								$arrResponse = array('msg' => 'ERROR AL CAPTURAR LOS DATOS DEL INICIO', 'type' => 'error');
 							}  
-
-
-							
-
 							$arrData = $this->model->sessionLogin($_SESSION['idUser']);
 							sessionUser($_SESSION['idUser']);							
 							$arrResponse = array('status' => true, 'msg' => 'ok');
@@ -62,7 +78,7 @@
 			}
 			die();
 		}
-
+//Funcion de seguridad para la recuperacion por correo
 		public function resetPass(){
 	            if($_POST){
 				
@@ -72,7 +88,7 @@
 						$token = token();
 						$strEmail  =  strtolower(strClean($_POST['txtEmailReset']));
 						$arrData = $this->model->getUserEmail($strEmail);
-
+//validacion por si el registro no existe en el sistema
 						if(empty($arrData)){
 							$arrResponse = array('status' => false, 'msg' => 'Usuario no existente.' ); 
 						}else{
@@ -109,7 +125,7 @@
 		
 			die();
 		}
-
+//funcion para validar el usuario
 		public function confirmUser(string $params){
 
 			if(empty($params)){

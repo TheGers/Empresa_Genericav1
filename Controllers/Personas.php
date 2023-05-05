@@ -1,4 +1,24 @@
 <?php
+// -----------------------------------------------------------------------
+// 	Universidad Nacional Autonoma de Honduras (UNAH)
+// 		Facultad de Ciencias Economicas
+// 	Departamento de Informatica administrativa
+//          Analisis, Programacion y Evaluacion de Sistemas
+//                     Primer Periodo 2023
+// Equipo:
+// Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+// Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+// Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+// Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+// Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+// Catedratico:
+// Lic. Karla Melisa Garcia Pineda 
+// ---------------------------------------------------------------------
+// Programa:         Modulo de Personas
+// Fecha:             23-febrero-2023
+// Programador:       Elsy Maradiaga 
+// descripcion:      Modulo que registra los datos de las personas(Cliente y Proveedor) 
+////MODULO PERSONAS--------ELSY YOHANA MARADIAGA 
 class Personas extends Controllers
 {
 	
@@ -26,6 +46,7 @@ class Personas extends Controllers
 	}
 	
 	//OPCION PARA VER TODOS LOS REGISTROS EN UNA TABLA DE INICIO 
+	//vista principal para el registro de personas
 	public function getPersonas()
 	{
 		if($_SESSION['permisosMod']['r']){
@@ -47,7 +68,7 @@ class Personas extends Controllers
 				}else{
 					$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
 				}
-				
+				//funciones para los botones que estan en el json
 				if($_SESSION['permisosMod']['r']){
 					$btnView = '<button class="btn btn-info btn-sm" onClick="fntViewInfo('.$arrData[$i]['COD_PERSONA'].')" title="Ver "><i class="far fa-eye"></i></button>';
 				}

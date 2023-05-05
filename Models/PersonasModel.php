@@ -1,5 +1,24 @@
 <?php 
-
+// -----------------------------------------------------------------------
+// 	Universidad Nacional Autonoma de Honduras (UNAH)
+// 		Facultad de Ciencias Economicas
+// 	Departamento de Informatica administrativa
+//          Analisis, Programacion y Evaluacion de Sistemas
+//                     Primer Periodo 2023
+// Equipo:
+// Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+// Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+// Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+// Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+// Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+// Catedratico:
+// Lic. Karla Melisa Garcia Pineda 
+// ---------------------------------------------------------------------
+// Programa:         Modulo de Personas
+// Fecha:             23-febrero-2023
+// Programador:       Elsy Maradiaga 
+// descripcion:      Modulo que registra los datos de las personas(Cliente y Proveedor) 
+////MODULO PERSONAS--------ELSY YOHANA MARADIAGA 
 	class PersonasModel extends Mysql
 	{
        //Tabla de personas
