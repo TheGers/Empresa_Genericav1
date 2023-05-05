@@ -3,20 +3,20 @@ let rowTable = "";
 let divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 
-    tableCategorias = $('#tableCategorias').dataTable( {
+    tableCategorias = $('#tableCategorias').dataTable( {//asigancion del formulario de la tabla en la funcion+
         "aProcessing":true,
         "aServerSide":true,
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/Categorias/getCategorias",
+            "url": " "+base_url+"/Categorias/getCategorias", //mandado a llamar el controlador 
             "dataSrc":""
         },
         "columns":[
             {"data":"idcategoria"},
             {"data":"nombre"},
-            {"data":"descripcion"},
+            {"data":"descripcion"},//variables a mostrar en las datatables
             {"data":"status"},
             {"data":"options"}
         ],
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 "className": "btn btn-secondary"
             },{
                 "extend": "excelHtml5",
-                "text": "<i class='fas fa-file-excel'></i> Excel",
+                "text": "<i class='fas fa-file-excel'></i> Excel", //funciones de exportaciones de datos
                 "titleAttr":"Esportar a Excel",
                 "className": "btn btn-success"
             },{
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 
-	if(document.querySelector("#foto")){
+	if(document.querySelector("#foto")){ //inserccion de una foto en las categorias
 	    let foto = document.querySelector("#foto");
 	    foto.onchange = function(e) {
 	        let uploadFoto = document.querySelector("#foto").value;
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	            let type = fileimg[0].type;
 	            let name = fileimg[0].name;
 	            if(type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png'){
-	                contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
+	                contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>'; //validacion del formato de img
 	                if(document.querySelector('#img')){
 	                    document.querySelector('#img').remove();
 	                }
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 
 	if(document.querySelector(".delPhoto")){
-	    let delPhoto = document.querySelector(".delPhoto");
+	    let delPhoto = document.querySelector(".delPhoto"); //funcion de remover imagen
 	    delPhoto.onclick = function(e) {
             document.querySelector("#foto_remove").value= 1;
 	        removePhoto();
@@ -96,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function(){
 	}
 
 	//NUEVA CATEGORIA
-    let formCategoria = document.querySelector("#formCategoria");
+    let formCategoria = document.querySelector("#formCategoria"); //funcion de formulario de inserccion de categoria
     formCategoria.onsubmit = function(e) {
         e.preventDefault();
         let strNombre = document.querySelector('#txtNombre').value;
-        let strDescripcion = document.querySelector('#txtDescripcion').value;
+        let strDescripcion = document.querySelector('#txtDescripcion').value; //equivalencia de datos del formulario en variables
         let intStatus = document.querySelector('#listStatus').value;        
         if(strNombre == '' || strDescripcion == '' || intStatus == '')
         {
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 }, false);
 
-function fntViewInfo(idcategoria){
+function fntViewInfo(idcategoria){//funcion de vcer una vista por id 
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
     request.open("GET",ajaxUrl,true);
@@ -159,7 +159,7 @@ function fntViewInfo(idcategoria){
                 let estado = objData.data.status == 1 ? 
                 '<span class="badge badge-success">Activo</span>' : 
                 '<span class="badge badge-danger">Inactivo</span>';
-                document.querySelector("#celId").innerHTML = objData.data.idcategoria;
+                document.querySelector("#celId").innerHTML = objData.data.idcategoria; //asigancion de espacios en el formulario de vista con dichas varibles
                 document.querySelector("#celNombre").innerHTML = objData.data.nombre;
                 document.querySelector("#celDescripcion").innerHTML = objData.data.descripcion;
                 document.querySelector("#celEstado").innerHTML = estado;
@@ -172,12 +172,12 @@ function fntViewInfo(idcategoria){
     }
 }
 
-function fntEditInfo(element,idcategoria){
+function fntEditInfo(element,idcategoria){//funcion de actualizar categorias
     rowTable = element.parentNode.parentNode.parentNode;
     document.querySelector('#titleModal').innerHTML ="Actualizar Categoría";
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-    document.querySelector('#btnText').innerHTML ="Actualizar";
+    document.querySelector('#btnText').innerHTML ="Actualizar";//modificacion de formulario para actualizar
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+'/Categorias/getCategoria/'+idcategoria;
     request.open("GET",ajaxUrl,true);
@@ -188,7 +188,7 @@ function fntEditInfo(element,idcategoria){
             if(objData.status)
             {
                 document.querySelector("#idCategoria").value = objData.data.idcategoria;
-                document.querySelector("#txtNombre").value = objData.data.nombre;
+                document.querySelector("#txtNombre").value = objData.data.nombre; //asigancion de variables a modificar con los campos del modal
                 document.querySelector("#txtDescripcion").value = objData.data.descripcion;
                 document.querySelector('#foto_actual').value = objData.data.portada;
                 document.querySelector("#foto_remove").value= 0;
@@ -221,7 +221,7 @@ function fntEditInfo(element,idcategoria){
     }
 }
 
-function fntDelInfo(idcategoria){
+function fntDelInfo(idcategoria){ //funcion de eliminar la categoria
     Swal.fire({
         title: "Eliminar Categoría",
         text: "¿Realmente quiere eliminar la categoría?",
@@ -236,14 +236,14 @@ function fntDelInfo(idcategoria){
     }).then((result) => {
         if (result.isConfirmed) {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url+'/Categorias/delCategoria';
+            let ajaxUrl = base_url+'/Categorias/delCategoria';//mandado a llamar el controlador
             let strData = "idCategoria="+idcategoria;
             request.open("POST",ajaxUrl,true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send(strData);
             request.onreadystatechange = function(){
                 if(request.readyState == 4 && request.status == 200){
-                    let objData = JSON.parse(request.responseText);
+                    let objData = JSON.parse(request.responseText);//envio de datos por json
                     if(objData.status)
                     {
                         Swal.fire({
@@ -277,7 +277,7 @@ function removePhoto(){
     document.querySelector('.delPhoto').classList.add("notBlock");
     if(document.querySelector('#img')){
         document.querySelector('#img').remove();
-    }
+    }//funcion de poder remover fotos de categorias
 }
 
 function openModal()
@@ -286,7 +286,7 @@ function openModal()
     document.querySelector('#idCategoria').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
     document.querySelector('#btnActionForm').classList.replace("btn-info", "btn-primary");
-    document.querySelector('#btnText').innerHTML ="Guardar";
+    document.querySelector('#btnText').innerHTML ="Guardar"; //funcion de para traer el mmodal para manipulacion
     document.querySelector('#titleModal').innerHTML = "Nueva Categoría";
     document.querySelector("#formCategoria").reset();
     $('#modalFormCategorias').modal('show');

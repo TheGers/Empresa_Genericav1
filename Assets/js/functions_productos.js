@@ -1,5 +1,6 @@
-document.write(`<script src="${base_url}/Assets/js/plugins/JsBarcode.all.min.js"></script>`);
-let tableProductos;
+document.write(`<script src="${base_url}/Assets/js/plugins/JsBarcode.all.min.js"></script>`); // script de mandado a llamar de la funcion agregada para el apartado del codigo de barras
+
+let tableProductos; //variable global para la funcion de retorno de la vista html 
 let rowTable = "";
 
 $(document).on('focusin', function (e) {
@@ -7,7 +8,7 @@ $(document).on('focusin', function (e) {
         e.stopImmediatePropagation();
     }
 });
-tableProductos = $('#tableProductos').dataTable({
+tableProductos = $('#tableProductos').dataTable({//funcion de mostrar la tabla de productos en la interfaz
     "aProcessing": true,
     "aServerSide": true,
     "language": {
@@ -21,7 +22,7 @@ tableProductos = $('#tableProductos').dataTable({
         { "data": "COD_PRODUCTO" },
         { "data": "BARCODIGO" },
         { "data": "NOMBRE_PRODUCTO" },
-        { "data": "tbl_categoria" },
+        { "data": "tbl_categoria" },  //variables a mostrar en la tabla 
         { "data": "DESCRIPCION" },
         { "data": "PRECIO" },
         { "data": "PrecioVenta" },
@@ -46,7 +47,7 @@ tableProductos = $('#tableProductos').dataTable({
             }
         }, {
             "extend": "excelHtml5",
-            "text": "<i class='fas fa-file-excel'></i> Excel",
+            "text": "<i class='fas fa-file-excel'></i> Excel",   //funciones de exportacion de archivos de las tablas
             "titleAttr": "Esportar a Excel",
             "className": "btn btn-success",
             "exportOptions": {
@@ -75,35 +76,35 @@ tableProductos = $('#tableProductos').dataTable({
     "iDisplayLength": 10,
     "order": [[0, "desc"]]
 });
-window.addEventListener('load', function () {
+window.addEventListener('load', function () {  //funcion de creacion de un nuevo producto
 
     if (document.querySelector("#formProductos")) {
-        let formProductos = document.querySelector("#formProductos");
+        let formProductos = document.querySelector("#formProductos"); //llamado de la id del formulario
         formProductos.onsubmit = function (e) {
             e.preventDefault();
             let strNOMBRE_PRODUCTO = document.querySelector('#txtNombre').value;
             let strBarcodigo = document.querySelector('#txtBARCODIGO').value;
-            let strDESCRIPCION = document.querySelector('#txtDescripcion').value;
+            let strDESCRIPCION = document.querySelector('#txtDescripcion').value;  //equivalencia de formulario con variables para su manipulacion
             let intPRECIO = document.querySelector('#txtPrecio').value;
             let intCOD_CATEGORIA = document.querySelector('#listCategoria').value;
             let intPRECIOVENTA = document.querySelector('#txtPrecioVenta').value;
             let intEXISTENCIA = document.querySelector('#txtStock').value;
             let intESTADO = document.querySelector('#listStatus').value;
             if (strNOMBRE_PRODUCTO == '' || strDESCRIPCION == '' || intPRECIO == ''|| intPRECIOVENTA=='' || intEXISTENCIA == '' || intESTADO == '' || strBarcodigo=="") {
-                swal.fire("Atención", "Todos los campos son obligatorios.", "error");
+                swal.fire("Atención", "Todos los campos son obligatorios.", "error"); // validacion de variables tengan datos incorporados para proceder con la inserccion
                 return false;
             }
             divLoading.style.display = "flex";
             let request = (window.XMLHttpRequest) ?
                 new XMLHttpRequest() :
                 new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url + '/Productos/setProducto';
+            let ajaxUrl = base_url + '/Productos/setProducto'; // mandado a llamar del controlador 
             let formData = new FormData(formProductos);
             request.open("POST", ajaxUrl, true);
             request.send(formData);
             request.onreadystatechange = function () {
-                if(request.readyState == 4 && request.status == 200){
-                    let objData = JSON.parse(request.responseText);
+                if(request.readyState == 4 && request.status == 200){ 
+                    let objData = JSON.parse(request.responseText);//mandado a llamar por medio de json todos los datos
                     if(objData.status)
                     {
                         swal.fire("", objData.msg ,"success");
@@ -119,7 +120,7 @@ window.addEventListener('load', function () {
                             rowTable.cells[2].textContent = strNOMBRE_PRODUCTO;
                             rowTable.cells[3].textContent = intCOD_CATEGORIA;
                             rowTable.cells[4].textContent = strDESCRIPCION;
-                            rowTable.cells[5].textContent = intPRECIO;
+                            rowTable.cells[5].textContent = intPRECIO; //conteo de variables 
                             rowTable.cells[6].textContent = intPRECIOVENTA;
                             rowTable.cells[7].textContent = intEXISTENCIA;
                             rowTable.cells[8].innerHTML =  htmlStatus;
@@ -137,11 +138,11 @@ window.addEventListener('load', function () {
     }
     fntCategorias();
 }, false);
-function fntViewInfo(idProducto){
+function fntViewInfo(idProducto){ //funcion de mostrar por id 
     let request = (window.XMLHttpRequest) ? 
                     new XMLHttpRequest() : 
                     new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto;
+    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto; //mandado a llamar por parametro lo que es el controlador
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
@@ -157,13 +158,13 @@ function fntViewInfo(idProducto){
 
                 document.querySelector("#celNombre").innerHTML = objProducto.NOMBRE_PRODUCTO;
                 document.querySelector("#txtBARCODIGO").innerHTML = objProducto.BARCODIGO;
-                document.querySelector("#celCategoria").innerHTML = objProducto.tbl_categoria;
+                document.querySelector("#celCategoria").innerHTML = objProducto.tbl_categoria; //funcion de asignacion de espacio a los datos para luego mostrarlos
                 document.querySelector("#celDescripcion").innerHTML = objProducto.DESCRIPCION;
                 document.querySelector("#celPrecio").innerHTML = objProducto.PRECIO;
                 document.querySelector("#celPrecioVenta").innerHTML = objProducto.PrecioVenta;
                 document.querySelector("#celStock").innerHTML = objProducto.EXISTENCIA;
                 document.querySelector("#celStatus").innerHTML = estadoProducto;
-                $('#modalViewProducto').modal('show');
+                $('#modalViewProducto').modal('show'); //retorno del formulario de modal
 
             }else{
                 swal.fire("Error", objData.msg , "error");
@@ -173,16 +174,16 @@ function fntViewInfo(idProducto){
 }
 
 
-function fntEditInfo(element,idProducto){
+function fntEditInfo(element,idProducto){//funcion de editar prudcto
     rowTable = element.parentNode.parentNode.parentNode;
-    document.querySelector('#titleModal').innerHTML ="Actualizar Producto";
+    document.querySelector('#titleModal').innerHTML ="Actualizar Producto"; //cambio de nombre del modasl
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-    document.querySelector('#btnText').innerHTML ="GUARDAR";
+    document.querySelector('#btnText').innerHTML ="GUARDAR"; //boton de guardar cambios de productos
     let request = (window.XMLHttpRequest) ? 
                     new XMLHttpRequest() : 
                     new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto;
+    let ajaxUrl = base_url+'/Productos/getProducto/'+idProducto; //mandado a llamar el controlador para el editar producto
     request.open("GET",ajaxUrl,true);
     request.send();
     request.onreadystatechange = function(){
@@ -196,7 +197,7 @@ function fntEditInfo(element,idProducto){
                 document.querySelector("#txtNombre").value = objProducto.NOMBRE_PRODUCTO;
                 document.querySelector("#txtBARCODIGO").value = objProducto.BARCODIGO;
                 document.querySelector("#listCategoria").value = objProducto.COD_CATEGORIA;
-                document.querySelector("#txtDescripcion").value = objProducto.DESCRIPCION;
+                document.querySelector("#txtDescripcion").value = objProducto.DESCRIPCION; //variables del formulario html del modal a variable normal para manipulacion
                 document.querySelector("#txtPrecio").value = objProducto.PRECIO;
                 document.querySelector("#txtPrecioVenta").value = objProducto.PrecioVenta;
                 document.querySelector("#txtStock").value = objProducto.EXISTENCIA;
@@ -213,7 +214,7 @@ function fntEditInfo(element,idProducto){
         }
     }
 }
-function fntDelInfo(idProducto){
+function fntDelInfo(idProducto){ //funcion de eliminar producto
     Swal.fire({
         title: "Eliminar Producto",
         text: "¿Realmente quiere eliminar el producto?",
@@ -227,7 +228,7 @@ function fntDelInfo(idProducto){
         if (result.isConfirmed) 
         {
             let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            let ajaxUrl = base_url+'/Productos/delProducto';
+            let ajaxUrl = base_url+'/Productos/delProducto'; //mandado a llamar el controlador 
             let strData = "idProducto="+idProducto;
             request.open("POST",ajaxUrl,true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -267,9 +268,9 @@ function fntDelInfo(idProducto){
     });
 }
 
-function fntCategorias() {
+function fntCategorias() { //funcion de deteccion de categoria para el producto
     if (document.querySelector('#listCategoria')) {
-        let ajaxUrl = base_url + '/Categorias/getSelectCategorias';
+        let ajaxUrl = base_url + '/Categorias/getSelectCategorias'; //mandado a llamar el controlador 
         let request = (window.XMLHttpRequest) ?
             new XMLHttpRequest() :
             new ActiveXObject('Microsoft.XMLHTTP');
@@ -278,14 +279,14 @@ function fntCategorias() {
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 document.querySelector('#listCategoria').innerHTML = request.responseText;
-                $('#listCategoria').selectpicker('render');
+                $('#listCategoria').selectpicker('render'); ///formulario de la seccion de categoria
             }
         }
     }
 }
 
 
-if(document.querySelector("#txtBARCODIGO")){
+if(document.querySelector("#txtBARCODIGO")){ //funcion de codigo de barras
     let inputCodigo = document.querySelector("#txtBARCODIGO");
     inputCodigo.onkeyup = function() {
         if(inputCodigo.value.length >= 5){
@@ -298,7 +299,7 @@ if(document.querySelector("#txtBARCODIGO")){
 }
 
 tinymce.init({
-	selector: '#txtDescripcion',
+	selector: '#txtDescripcion', //funcion para descripcion 
 	width: "100%",
     height: 400,    
     statubar: true,
@@ -310,12 +311,12 @@ tinymce.init({
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 });
 
-function fntBarcode(){
+function fntBarcode(){ //funcion de asignacion de variable del html
     let codigo = document.querySelector("#txtBARCODIGO").value;
     JsBarcode("#barcode", codigo);
 }
 
-function fntPrintBarcode(area){
+function fntPrintBarcode(area){ //funcion de impresion del codigo de barras
     let elemntArea = document.querySelector(area);
     let vprint = window.open(' ', 'popimpr', 'height=400,width=600');
     vprint.document.write(elemntArea.innerHTML );
@@ -325,7 +326,7 @@ function fntPrintBarcode(area){
 }
 
 
-function openModal() {
+function openModal() { //funcion de mandado a llamar el modal de creacion de productos
     rowTable = "";
     document.querySelector('#idProducto').value = "";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");

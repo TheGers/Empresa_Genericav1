@@ -8,14 +8,14 @@ let rowTable = "";
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax": {
-            "url": " " + base_url + "/Preguntas/getPreguntas",
+            "url": " " + base_url + "/Preguntas/getPreguntas", //mandado a llamar el controlador
             "dataSrc": ""
         },
     
         "columns": [
             { "data": "COD_PRREGUNTA" },
             { "data": "COD_USUARIO" },
-            { "data": "PREGUNTA" },
+            { "data": "PREGUNTA" }, //variables mostrar en data tables
             { "data": "status" },
             { "data": "options" },
     
@@ -29,7 +29,7 @@ let rowTable = "";
                 "className": "btn btn-secondary"
             }, {
                 "extend": "excelHtml5",
-                "text": "<i class='fas fa-file-excel'></i> Excel",
+                "text": "<i class='fas fa-file-excel'></i> Excel", //funciones de exportaciones de datos
                 "titleAttr": "Esportar a Excel",
                 "className": "btn btn-success"
             }, {
@@ -54,13 +54,13 @@ let rowTable = "";
 
 
       //NUEVO Pregunta
-      var formPregunta = document.querySelector("#formPregunta");
+      var formPregunta = document.querySelector("#formPregunta"); //formulario de inseccion de preguntas
       formPregunta.onsubmit = function(e) {
           e.preventDefault();
           var listUsuario = document.querySelector('#listUsuario').value;
           var strPregunta = document.querySelector('#txtPregunta').value;
           var strRespuesta = document.querySelector('#txtRespuesta').value;    
-          var intStatus = document.querySelector('#listStatus').value;        
+          var intStatus = document.querySelector('#listStatus').value;         //variables a ser insertardas 
           if(listUsuario == '' || strPregunta == '' || strRespuesta == '' || intStatus == '')
           {
               swal.fire("Atención", "Todos los campos son obligatorios." , "error");
@@ -68,14 +68,14 @@ let rowTable = "";
           }
           divLoading.style.display = "flex";
           var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-          var ajaxUrl = base_url+'/Preguntas/setPregunta'; 
+          var ajaxUrl = base_url+'/Preguntas/setPregunta'; //mandado a llamar el controlador
           var formData = new FormData(formPregunta);
           request.open("POST",ajaxUrl,true);
           request.send(formData);
           request.onreadystatechange = function(){
              if(request.readyState == 4 && request.status == 200){
                   
-                  var objData = JSON.parse(request.responseText);
+                  var objData = JSON.parse(request.responseText);//envio de datos por medio de json
                   if(objData.status)
                   {
                       $('#modalFormPregunta').modal("hide");
@@ -95,12 +95,12 @@ let rowTable = "";
 
  });
 
- function fntEditInfo(element,COD_PRREGUNTA ){
+ function fntEditInfo(element,COD_PRREGUNTA ){//funcion de editar la pregunta 
     rowTable = element.parentNode.parentNode.parentNode;
     document.querySelector('#titleModal').innerHTML ="Actualizar Pregunta";
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-    document.querySelector('#btnText').innerHTML ="Actualizar";
+    document.querySelector('#btnText').innerHTML ="Actualizar";//modificacion del modal para la interfaz acorde a actualizar 
     var COD_PRREGUNTA =COD_PRREGUNTA;
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+'/Preguntas/getPregunta/'+COD_PRREGUNTA ;
@@ -112,7 +112,7 @@ let rowTable = "";
             if(objData.status)
             {
                 document.querySelector("#idPregunta").value = objData.data.COD_PRREGUNTA ;
-                document.querySelector("#listUsuario").value = objData.data.COD_USUARIO;
+                document.querySelector("#listUsuario").value = objData.data.COD_USUARIO; //equivalencias de datos a editar
                 document.querySelector("#txtPregunta").value = objData.data.PREGUNTA;
                 document.querySelector('#txtRespuesta').value = objData.data.RESPUESTA;
            
@@ -141,7 +141,7 @@ let rowTable = "";
 
 function fntDelInfo(idPregunta) {
     var idPregunta = idPregunta;
-    Swal.fire({
+    Swal.fire({ //funcion de eliminar las preguntas  de recuperacion
         title: 'Eliminar Pregunta',
         text: '¿Realmente quiere eliminar la Pregunta?',
         icon: 'warning',
@@ -153,7 +153,7 @@ function fntDelInfo(idPregunta) {
     }).then((result) => {
         if (result.isConfirmed) {
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-            var ajaxUrl = base_url+'/Preguntas/delPregunta/';
+            var ajaxUrl = base_url+'/Preguntas/delPregunta/'; //mandado a llamar el controlador
             var strData = "idPregunta="+idPregunta;
             request.open("POST",ajaxUrl,true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -191,7 +191,7 @@ function fntDelInfo(idPregunta) {
 //    ----------------------------------- BOTONES Y DECLARACION DE COLUMNAS -----------------------------------
 
 
-function openModal(){
+function openModal(){ //funcion de modal para manipulacion de datos
 
     document.querySelector('#idPregunta').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");

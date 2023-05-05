@@ -1,4 +1,4 @@
-let tableacceso;
+let tableacceso;  
 let rowTable = "";
 
 
@@ -13,13 +13,13 @@ tableacceso = $('#tableacceso').dataTable({
         "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
     },
     "ajax": {
-        "url": " " + base_url + "/Accesos/getAccesos",
+        "url": " " + base_url + "/Accesos/getAccesos", //mandado a llamar el controlador
         "dataSrc": ""
     },
 
     "columns": [
         { "data": "id" },
-        { "data": "evento" },
+        { "data": "evento" },//variable a mostrar en el datatable
         { "data": "ip" },
         { "data": "detalle" },
         { "data": "fecha" },
@@ -38,7 +38,7 @@ tableacceso = $('#tableacceso').dataTable({
             "extend": "excelHtml5",
             "text": "<i class='fas fa-file-excel'></i> Excel",
             "titleAttr": "Esportar a Excel",
-            "className": "btn btn-success"
+            "className": "btn btn-success" //funciones de exportaciones
         }, {
             "extend": "pdfHtml5",
             "text": "<i class='fas fa-file-pdf'></i> PDF",

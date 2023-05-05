@@ -1,4 +1,4 @@
-var tableRoles;
+var tableRoles; //varible para el formulario
 var divLoading = document.querySelector("#divLoading");
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function(){
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/Roles/getRoles",
+            "url": " "+base_url+"/Roles/getRoles", //mandado a llamar el controlador 
             "dataSrc":""
         },
         "columns":[
             {"data":"idrol"},
             {"data":"nombrerol"},
-            {"data":"descripcion"},
+            {"data":"descripcion"}, //varibles a mostrar  en la datatable
             {"data":"status"},
             {"data":"options"}
         ],
@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     //NUEVO ROL
-    var formRol = document.querySelector("#formRol");
+    var formRol = document.querySelector("#formRol"); //formulario de inserccion de un nuevo rol
     formRol.onsubmit = function(e) {
         e.preventDefault();
 
         var intIdRol = document.querySelector('#idRol').value;
-        var strNombre = document.querySelector('#txtNombre').value;
+        var strNombre = document.querySelector('#txtNombre').value; //equiivalencias de formulario a variables para su manipulacion
         var strDescripcion = document.querySelector('#txtDescripcion').value;
         var intStatus = document.querySelector('#listStatus').value;        
         if(strNombre == '' || strDescripcion == '' || intStatus == '')
@@ -41,14 +41,14 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         divLoading.style.display = "flex";
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var ajaxUrl = base_url+'/Roles/setRol'; 
+        var ajaxUrl = base_url+'/Roles/setRol'; //mandado a llamar del controlador
         var formData = new FormData(formRol);
         request.open("POST",ajaxUrl,true);
         request.send(formData);
         request.onreadystatechange = function(){
            if(request.readyState == 4 && request.status == 200){
                 
-                var objData = JSON.parse(request.responseText);
+                var objData = JSON.parse(request.responseText); //envio de datos por json
                 if(objData.status)
                 {
                     $('#modalFormRol').modal("hide");
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 $('#tableRoles').DataTable();
 
-function openModal(){
+function openModal(){ //funcion de de traer el formulario del modal
 
     document.querySelector('#idRol').value ="";
     document.querySelector('.modal-header').classList.replace("headerUpdate", "headerRegister");
@@ -87,26 +87,26 @@ window.addEventListener('load', function() {
     fntPermisos();*/
 }, false);
 
-function fntEditRol(idrol){
+function fntEditRol(idrol){ //funcion de editar el id del rol
     document.querySelector('#titleModal').innerHTML ="Actualizar Rol";
     document.querySelector('.modal-header').classList.replace("headerRegister", "headerUpdate");
     document.querySelector('#btnActionForm').classList.replace("btn-primary", "btn-info");
-    document.querySelector('#btnText').innerHTML ="Actualizar";
+    document.querySelector('#btnText').innerHTML ="Actualizar"; //cambios de interfaz del modal 
 
     var idrol = idrol;
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl  = base_url+'/Roles/getRol/'+idrol;
+    var ajaxUrl  = base_url+'/Roles/getRol/'+idrol;//mandado a llamar el controlador 
     request.open("GET",ajaxUrl ,true);
     request.send();
 
     request.onreadystatechange = function(){
         if(request.readyState == 4 && request.status == 200){
             
-            var objData = JSON.parse(request.responseText);
+            var objData = JSON.parse(request.responseText); //envio de datos por medio de json
             if(objData.status)
             {
                 document.querySelector("#idRol").value = objData.data.idrol;
-                document.querySelector("#txtNombre").value = objData.data.nombrerol;
+                document.querySelector("#txtNombre").value = objData.data.nombrerol; //equivalencias de datos del formulario en variables
                 document.querySelector("#txtDescripcion").value = objData.data.descripcion;
 
                 if(objData.data.status == 1)
@@ -129,7 +129,7 @@ function fntEditRol(idrol){
 
 }
 
-function fntDelRol(idrol) {
+function fntDelRol(idrol) { // eliminacion de un rol
     var idrol = idrol;
     Swal.fire({
         title: 'Eliminar Rol',
@@ -175,15 +175,15 @@ function fntDelRol(idrol) {
         }
     });
 }
-function fntPermisos(idrol){
+function fntPermisos(idrol){ 
     var idrol = idrol;
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url+'/Permisos/getPermisosRol/'+idrol;
+    var ajaxUrl = base_url+'/Permisos/getPermisosRol/'+idrol;//mandado a llamar el controlador
     request.open("GET",ajaxUrl,true);
     request.send();
 
     request.onreadystatechange = function(){
-        if(request.readyState == 4 && request.status == 200){
+        if(request.readyState == 4 && request.status == 200){ //endio de datos por json
             document.querySelector('#contentAjax').innerHTML = request.responseText;
             $('.modalPermisos').modal('show');
             document.querySelector('#formPermisos').addEventListener('submit',fntSavePermisos,false);
@@ -191,10 +191,10 @@ function fntPermisos(idrol){
     }
 }
 
-function fntSavePermisos(evnet){
+function fntSavePermisos(evnet){ //funcion de guardar los permisos en los roles
     evnet.preventDefault();
     var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    var ajaxUrl = base_url+'/Permisos/setPermisos'; 
+    var ajaxUrl = base_url+'/Permisos/setPermisos';  //mandado a llamar el controlador
     var formElement = document.querySelector("#formPermisos");
     var formData = new FormData(formElement);
     request.open("POST",ajaxUrl,true);

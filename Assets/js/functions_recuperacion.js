@@ -3,7 +3,7 @@ $('.login-content [data-toggle="flip"]').click(function() {
 	return false;
 });
 
-var divLoading = document.querySelector("#divLoading");
+var divLoading = document.querySelector("#divLoading"); //funcion de inserccion de preguntas
 document.addEventListener('DOMContentLoaded', function(){
 	if(document.querySelector("#formPregunta")){
 		let formPregunta = document.querySelector("#formPregunta");
@@ -11,30 +11,30 @@ document.addEventListener('DOMContentLoaded', function(){
 			e.preventDefault();
 
 			let intCOD_USUARIO = document.querySelector('#txtUsername').value;
-			let strPREGUNTA = document.querySelector('#listPregunta').value;
+			let strPREGUNTA = document.querySelector('#listPregunta').value; //equivalencias de formulario ewn varibles
             let strRESPUESTA = document.querySelector('#txtRespuesta').value;
 
 			if(intCOD_USUARIO == "" || strPREGUNTA == ""|| strRESPUESTA == "")
 			{
 				swal.fire("Por favor", "Escribe un  usuario, Con su pregunta y respuesta.", "error");
-				return false;
+				return false; //validacion de datos requeridos 
 			}else{
 				divLoading.style.display = "flex";
 				var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-				var ajaxUrl = base_url+'/Recuperacion/Reseteo'; 
+				var ajaxUrl = base_url+'/Recuperacion/Reseteo'; //mandado a llamar el controlador
 				var formData = new FormData(formPregunta);
 				request.open("POST",ajaxUrl,true);
 				request.send(formData);
 				request.onreadystatechange = function(){
 					if(request.readyState != 4) return;
 					if(request.status == 200){
-						var objData = JSON.parse(request.responseText);
+						var objData = JSON.parse(request.responseText); //envio de datos por json
 						if(objData.status)
 						{
 							window.location = base_url+'/Login/resetPass';
 						}else{
 							swal("Atención", objData.msg, "error");
-							document.querySelector('#listPregunta').value = "";
+							document.querySelector('#listPregunta').value = ""; //datos los campos de la recuperacion de preghuntas
                             document.querySelector('#txtRespuesta').value = "";
 						}
 					}else{
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		}
 	}
 
-	if(document.querySelector("#formCambiarPass")){
+	if(document.querySelector("#formCambiarPass")){//validacion de datos de recuperacion 
 		let formCambiarPass = document.querySelector("#formCambiarPass");
 		formCambiarPass.onsubmit = function(e) {
 			e.preventDefault();
