@@ -2,7 +2,7 @@
 class Configuracion extends Controllers
 {
 
-	// ---------------------------------- CREADO POR EDWIN JUANEZ ---------------------------------
+	// -----------------------hola----------- CREADO POR EDWIN JUANEZ ---------------------------------
 	// ---------------------------------- CONSTRUCTOR ---------------------------------
 
 	public function __construct()
