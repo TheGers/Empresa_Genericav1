@@ -1,3 +1,4 @@
+// -------------------------------------------------CAPTURACION DE LA FUNCION VENTAS- EDWIN JUANEZ----------------------------------------------------
 let tableVentas;
 let rowTable = "";
 $(document).on("focusin", function (e) {
@@ -6,6 +7,7 @@ $(document).on("focusin", function (e) {
   }
 });
 
+// -------------------------------------------------Tabla que carga las ventas en historial----------------------------------------------------
 tableVentas = $("#tableVentas").DataTable({
   aProcessing: true,
   aServerSide: true,
@@ -58,7 +60,7 @@ tableVentas = $("#tableVentas").DataTable({
   order: [[0, "desc"]],
 });
 
-// -------------------------------------------------CAPTURACION - JAHIR----------------------------------------------------
+// -------------------------------------------------CAPTURACION - EDWIN JUANEZ----------------------------------------------------
 
 const inputBuscarCodigo = document.querySelector("#buscarProductoCodigo");
 const inputBuscarNombre = document.querySelector("#buscarProductoNombre");
@@ -127,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
       serie.focus();
     },
   });
-  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - JAHIR-------------------------------------------
+  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - EDWIN JUANEZ-------------------------------------------
   $("#buscarProductoNombre").autocomplete({
     source: function (request, response) {
       $.ajax({
@@ -212,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - JAHIR------------------------------------------
+// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - EDWIN JUANEZ------------------------------------------
 
 function buscarProducto(valor) {
   const url = base_url + "/productos/buscarPorCodigo/" + valor;
@@ -230,7 +232,7 @@ function buscarProducto(valor) {
   };
 }
 
-// ------------------------------------------LISTAR PROVEEDORES EN EL SELECTOR DE COMPRAS-------------------------------------------
+// ------------------------------------------LISTAR PROVEEDORES EN EL SELECTOR DE VENTASS - EDWIN JUANEZ------------------------------------------
 
 function fntPersonas() {
   if (document.querySelector("#listCliente")) {
@@ -250,7 +252,7 @@ function fntPersonas() {
   }
 }
 
-// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - JAHIR----------------------------------------------
+// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - EDWIN JUANEZ----------------------------------------------
 
 function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   if (localStorage.getItem("posVenta") == null) {
@@ -277,7 +279,7 @@ function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   mostrarProducto();
 }
 
-// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - JAHIR--------------------------
+// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - EDWIN JUANEZ--------------------------
 
 function alertaPersonalizada(type, msg) {
   Swal.fire({
@@ -290,7 +292,7 @@ function alertaPersonalizada(type, msg) {
   });
 }
 
-// ------------------------------------CARGAR PRODUCTOS - JAHIR----------------------------------
+// ------------------------------------CARGAR PRODUCTOS - EDWIN JUANEZ----------------------------------
 
 function mostrarProducto() {
   if (localStorage.getItem("posVenta") != null) {
@@ -332,7 +334,7 @@ function mostrarProducto() {
   }
 }
 
-// ------------------------------------BTN ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------BTN ELIMINAR PRODUCTO - EDWIN JUANEZ------------------------------------------
 function btneliminarProducto() {
   let lista = document.querySelectorAll(".btnEliminar");
   for (let i = 0; i < lista.length; i++) {
@@ -344,7 +346,7 @@ function btneliminarProducto() {
   }
 }
 
-// ------------------------------------ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------ELIMINAR PRODUCTO - EDWIN JUANEZ------------------------------------------
 
 function eliminarProducto(idProducto) {
   for (let i = 0; i < listaCarrito.length; i++) {
@@ -357,7 +359,7 @@ function eliminarProducto(idProducto) {
   mostrarProducto();
 }
 
-//------------------------------------agregar evento change para cambiar la cantidad-------------------------
+//------------------------------------agregar evento change para cambiar la cantidad - EDWIN JUANEZ------------------------
 
 function agregarCantidad() {
   let lista = document.querySelectorAll(".inputCantidad");
@@ -370,7 +372,7 @@ function agregarCantidad() {
   }
 }
 
-//------------------------------------agregar evento change para cambiar la cantidad-------------------------
+//------------------------------------agregar evento change para cambiar la cantidad - EDWIN JUANEZ------------------------
 
 function cambiarCantidad(COD_PRODUCTO, EXISTENCIA) {
   for (let i = 0; i < listaCarrito.length; i++) {
@@ -382,7 +384,7 @@ function cambiarCantidad(COD_PRODUCTO, EXISTENCIA) {
   mostrarProducto();
 }
 
-//------------------------------------VER REPORTE DE LA COMPRA-------------------------
+//------------------------------------VER REPORTE DE LA VENTAS - EDWIN JUANEZ------------------------
 
 function verReporte(COD_VENTA) {
   Swal.fire({
@@ -404,7 +406,7 @@ function verReporte(COD_VENTA) {
   })
 }
 
-//------------------------------------ANULAR LA VENTA-------------------------
+//------------------------------------ANULAR LA VENTA - EDWIN JUANEZ------------------------
 
 function anularVenta(COD_VENTA) {
   // Preguntar al usuario si desea anular la venta
@@ -438,3 +440,6 @@ function anularVenta(COD_VENTA) {
     }
   })
 }
+
+// -----------------------Funcion para las Ventas--------------------------->
+// -----------------------Creado por Edwin Juanez--------------------------->

@@ -8,7 +8,7 @@ use function PHPSTORM_META\type;
 class Ventas extends Controllers
 {
 	private $idPersona;
-	// -----------------------------------------------------CONSTRUCTOR-------------------------------------------------------
+	// -----------------------------------------------------CONSTRUCTOR - EDWIN JUANEZ------------------------------------------------------
 
 	public function __construct()
 	{
@@ -21,7 +21,7 @@ class Ventas extends Controllers
 		getPermisos(6);
 	}
 
-	// -------------------------------------------------------MOSTRAR---------------------------------------------------------
+	// -------------------------------------------------------MOSTRAR - EDWIN JUANEZ--------------------------------------------------------
 
 	public function Ventas()
 	{
@@ -35,7 +35,7 @@ class Ventas extends Controllers
 		$this->views->getView($this, "ventas", $data);
 	}
 
-	// -------------------------------------------------------OBTENER---------------3333333------------------------------------------
+	// -------------------------------------------------------OBTENER - EDWIN JUANEZ--------------------------------------------------------
 
 	public function getVentas()
 {
@@ -68,7 +68,7 @@ class Ventas extends Controllers
     die();
 }
 
-	// -------------------------------------------------------ACTUALIZAR-----------------------------------------------------------
+	// -------------------------------------------------------ACTUALIZAR - EDWIN JUANEZ----------------------------------------------------------
 
 	public function setVenta()
 	{
@@ -125,7 +125,7 @@ class Ventas extends Controllers
 		die();
 	}
 
-	// -----------------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------CARGAR UNA SOLA VENTYA - EDWIN JUANEZ--------------------------------------------------------------
 
 	public function getventa($COD_VENTA)
 	{
@@ -144,7 +144,7 @@ class Ventas extends Controllers
 		die();
 	}
 
-	// -----------------------------------------------------------------------------------------------------------------------------
+	// ------------------------------------REGISTRA VENTAS - EDWIN JUANEZ------------------------------------------------------------------
 
 	public function registraVenta()
 	{
@@ -193,7 +193,7 @@ class Ventas extends Controllers
 		die();
 	}
 
-	//------------------------------------------------Bayron-------------------------------------------------
+	//-------------------------------------REPORTE DE VENTAS - EDWIN JUANEZ-----------------------------------------------
 	public function reporte($datos)
 	{
 		$array = explode(',', $datos);
@@ -229,7 +229,7 @@ class Ventas extends Controllers
 		$dompdf->stream('Reporte_venta.pdf', array('Attachment' => false));
 	}
 
-	// /------------------------------------------------Bayron-------------------------------------------------
+	// /----------------------------ANULAR VENTA - EDWIN JUANEZ-----------------------------------------------
 	public function anular($COD_VENTA){
 	if (isset($_GET) && is_numeric($COD_VENTA)) {
 		$data = $this->model->anular($COD_VENTA);
@@ -253,4 +253,7 @@ class Ventas extends Controllers
 	echo json_encode($res);
 	die();
 	}
+
+	// -------------------------------------------Controlador para las ventas--------------------------------------------------
+    // -------------------------------------------Creado por Edwin Juanez --------------------------------------------------
 }
