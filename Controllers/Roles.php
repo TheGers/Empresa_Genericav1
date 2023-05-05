@@ -1,6 +1,31 @@
 <?php 
+/*
+	Universidad Nacional Autonoma de Honduras (UNAH)
+		    Facultad de Ciencias Economicas
+		Departamento de Informatica administrativa
+         Analisis, Programacion y Evaluacion de Sistemas
+                    Primer Periodo 2023
+Equipo:
+Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
 
+Catedratico:
+Lic. Karla Melisa Garcia Pineda 
+
+---------------------------------------------------------------------
+
+Programa:         Modulo de Roles
+Fecha:             23-febrero-2023
+Programador:       Miguel Cardenas 
+descripcion:       Modulo que asigna los roles de usuarios
+*/
+
+//Controlador del Modulo roles
 	class Roles extends Controllers{
+
 		public function __construct()
 		{
 			parent::__construct();
@@ -9,9 +34,10 @@
 			{
 				header('Location: '.base_url().'/login');
 			}
-			getPermisos(13);
+			getPermisos(13); //Funcion para asigar permiso del modulo
 		}
 
+		//Funcion para retornar la vista y encabezados del modulo
 		public function Roles()
 		{
 			if(empty($_SESSION['permisosMod']['r'])){
@@ -24,6 +50,7 @@
 			$data['page_functions_js'] = "functions_roles.js";
 			$this->views->getView($this,"roles",$data);
 		}
+
 
 		public function getRoles()
 		{
