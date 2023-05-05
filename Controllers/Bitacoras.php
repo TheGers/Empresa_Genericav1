@@ -2,7 +2,7 @@
 	class Bitacoras extends Controllers{
 		public function __construct()
 		{
-			parent::__construct();
+			parent::__construct(); //constructor del controlador con funciones de validacion de login de usuario y permiso ortogado
 			session_start();
 			if(empty($_SESSION['login']))
 			{
@@ -11,14 +11,14 @@
 			getPermisos(14);
 		}
 
-		public function Bitacoras()
+		public function Bitacoras() 
 		{
 			if(empty($_SESSION['permisosMod']['r'])){
 				header("Location:".base_url().'/dashboard');
 			}
 			$data['page_tag'] = "Bitacoras";
-			$data['page_title'] = "Bitacoras <small>Tienda Virtual</small>";
-			$data['page_name'] = "bitacoras";
+			$data['page_title'] = "Bitacoras";
+			$data['page_name'] = "bitacoras"; // funcion que da funcion al titulo y mandando a llamar del ajax y vista
 			$data['page_functions_js'] = "functions_bitacoras.js";
 			$this->views->getView($this,"bitacoras",$data);
 		}
@@ -29,7 +29,7 @@
 		public function getBitacoras()
 		{
 			if($_SESSION['permisosMod']['r']){
-				$arrData = $this->model->selectBitacoras();
+				$arrData = $this->model->selectBitacoras();//funcion que lleva los datos al modelo
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnView = '';
 					$btnEdit = '';
@@ -39,10 +39,10 @@
 					{
 						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
 					}else{
-						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>'; //establecimiento del estado 
 					}
 
-					if($_SESSION['permisosMod']['r']){
+					if($_SESSION['permisosMod']['r']){ //botones de ejecucion
 					//	$btnView = '<button class="btn btn-info btn-sm" onClick="fntViewInfo('.$arrData[$i]['idcategoria'].')" title="Ver categoría"><i class="far fa-eye"></i></button>';
 					}
 					if($_SESSION['permisosMod']['u']){

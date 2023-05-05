@@ -2,7 +2,7 @@
 class Accesos extends Controllers
 {
 	
-	public function __construct()
+	public function __construct()//constructor del controlador con funciones de validacion de login de usuario y permiso ortogado
 	{
 		parent::__construct();
 			session_start();
@@ -18,7 +18,7 @@ class Accesos extends Controllers
 		if(empty($_SESSION['permisosMod']['r'])){
 			header("Location:".base_url().'/dashboard');
 		}
-		$data['page_tag'] = "Accesos";
+		$data['page_tag'] = "Accesos"; // funcion que da funcion al titulo y mandando a llamar del ajax y vista
 		$data['page_title'] = "Accesos";
 		$data['page_name'] = "Accesos";
 		$data['page_functions_js'] = "Accesos.js";
@@ -32,7 +32,7 @@ class Accesos extends Controllers
     {
         if ($_SESSION['permisosMod']['r']) {
 			$arrData = $this->model->MostrarAccesos();
-			for ($i = 0; $i < count($arrData); $i++) {
+			for ($i = 0; $i < count($arrData); $i++) { //funcion que va al controlador y valida la traida de datos 
 				$btnView = '';
 				$btnEdit = '';
 				$btnDelete = '';
@@ -40,12 +40,12 @@ class Accesos extends Controllers
 				if ($arrData[$i]['status'] == 1) {
 					$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
 				} else {
-					$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+					$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';//manerda de mostrar el estado
 				}
 
 
 				
-				if ($_SESSION['permisosMod']['u']) {
+				if ($_SESSION['permisosMod']['u']) { //botones de ejecuciones
 					//$btnEdit = '<button class="btn btn-primary  btn-sm" onClick="fntEditInfo(this,' . $arrData[$i]['COD_REGIMEN'] . ')" title="Editar categoría"><i class="fas fa-pencil-alt"></i></button>';
 				}
 				if ($_SESSION['permisosMod']['d']) {

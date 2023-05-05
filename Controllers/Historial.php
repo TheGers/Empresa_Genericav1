@@ -5,7 +5,7 @@ class Historial extends Controllers
 	public function __construct()
 	{
 		parent::__construct();
-			session_start();
+			session_start(); //funcion del controlador que instancia las funciones, en la cual detecta la sesion del usuario
 			if(empty($_SESSION['login']))
 			{
 				header('Location: '.base_url().'/login');
@@ -18,7 +18,7 @@ class Historial extends Controllers
 		if(empty($_SESSION['permisosMod']['r'])){
 			header("Location:".base_url().'/dashboard');
 		}
-		$data['page_tag'] = "Historial de Contraseña";
+		$data['page_tag'] = "Historial de Contraseña";  //determina los campos de la tabla de titular y relfleja que funcion de ajax necesita y el retorno de la vista
 		$data['page_title'] = "Historial de Contraseña";
 		$data['page_name'] = "Historial de Contraseña";
 		$data['page_functions_js'] = "Historial.js";
@@ -26,10 +26,10 @@ class Historial extends Controllers
 	}
 
 
-    public function getHistorial()
+    public function getHistorial()//funcion de mostrar el historial
     {
         if ($_SESSION['permisosMod']['r']) {
-			$arrData = $this->model->selectHistorial();
+			$arrData = $this->model->selectHistorial(); //mandado a llamar el modelo
 			for ($i = 0; $i < count($arrData); $i++) {
 				$btnView = '';
 				$btnEdit = '';

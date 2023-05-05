@@ -1,7 +1,7 @@
 <?php 
 
 	class Usuarios extends Controllers{
-		public function __construct()
+		public function __construct() //funcion del controlador que instancia las funciones, en la cual detecta la sesion del usuario
 		{
 			parent::__construct();
 			session_start();
@@ -19,13 +19,13 @@
 				header("Location:".base_url().'/dashboard');
 			}
 			$data['page_tag'] = "Usuarios";
-			$data['page_title'] = "USUARIOS";
+			$data['page_title'] = "USUARIOS";  //determina los campos de la tabla de titular y relfleja que funcion de ajax necesita y el retorno de la vista
 			$data['page_name'] = "usuarios";
 			$data['page_functions_js'] = "functions_usuarios.js";
 			$this->views->getView($this,"usuarios",$data);
 		}
 
-		public function setUsuario(){
+		public function setUsuario(){//funcion para insertar o actualizar datos
 			if($_POST){			
 				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtUsername']) || empty($_POST['txtTelefono']) || empty($_POST['txtEmail']) || empty($_POST['listRolid']) || empty($_POST['listStatus']) )
 				{
@@ -34,7 +34,7 @@
 					$idUsuario = intval($_POST['idUsuario']);
 					$strIdentificacion = strClean($_POST['txtIdentificacion']);
 					$strNombre = ucwords(strClean($_POST['txtNombre']));
-					$strApellido = ucwords(strClean($_POST['txtApellido']));
+					$strApellido = ucwords(strClean($_POST['txtApellido'])); //equivalencia de datos con el formulario html 
 					$intTelefono = intval(strClean($_POST['txtTelefono']));
 					$strEmail = strtolower(strClean($_POST['txtEmail']));
 					$strUsername = ucwords(strClean($_POST['txtUsername']));
@@ -57,7 +57,7 @@
 																				$strPassword, 
 																				$intTipoId, 
 																				$this->idPersona,
-																				$intStatus );
+																				$intStatus ); //envio de datos al modelo para ser insertados
 						}
 					}else{
 						$option = 2;
@@ -74,7 +74,7 @@
 																		$intTipoId, 
 																		$this->idPersona,
 																		$FECHA_MODIFICADO,
-																		$intStatus);
+																		$intStatus); //envio de datos al modelo para ser actualizados
 						}
 
 					}
@@ -84,7 +84,7 @@
 						if($option == 1){
 							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
 						}else{
-							$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
+							$arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.'); //deteccion del estado
 						}
 					}else if($request_user == 'exist'){
 						$arrResponse = array('status' => false, 'msg' => '¡Atención! el email o la identificación ya existe, ingrese otro.');		
@@ -100,7 +100,7 @@
 		public function getUsuarios()
 		{
 			if($_SESSION['permisosMod']['r']){
-				$arrData = $this->model->selectUsuarios();
+				$arrData = $this->model->selectUsuarios(); //envio de datos al modelo
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnView = '';
 					$btnEdit = '';
@@ -108,7 +108,7 @@
 
 					if($arrData[$i]['status'] == 1)
 					{
-						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>'; //deteccion del estado
 					}else{
 						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
 					}
@@ -141,12 +141,12 @@
 			die();
 		}
 
-		public function getUsuario($idpersona){
+		public function getUsuario($idpersona){ //funcion que retornba los datos de un usuario
 			if($_SESSION['permisosMod']['r']){
 				$idusuario = intval($idpersona);
 				if($idusuario > 0)
 				{
-					$arrData = $this->model->selectUsuario($idusuario);
+					$arrData = $this->model->selectUsuario($idusuario);//envio al modelo
 					if(empty($arrData))
 					{
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
@@ -159,12 +159,12 @@
 			die();
 		}
 
-		public function delUsuario()
+		public function delUsuario() //funcion de eliminar un usuario
 		{
 			if($_POST){
 				if($_SESSION['permisosMod']['d']){
 					$intIdpersona = intval($_POST['idUsuario']);
-					$requestDelete = $this->model->deleteUsuario($intIdpersona);
+					$requestDelete = $this->model->deleteUsuario($intIdpersona); //envio al modelo
 					if($requestDelete)
 					{
 						$arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario');
@@ -185,7 +185,7 @@
 			$this->views->getView($this,"perfil",$data);
 		}
 
-		public function putPerfil(){
+		public function putPerfil(){ //funcion de actualizacion del perfil
 			if($_POST){
 				if(empty($_POST['txtIdentificacion']) || empty($_POST['txtNombre']) || empty($_POST['txtApellido']) || empty($_POST['txtTelefono']) )
 				{
@@ -194,7 +194,7 @@
 					$idUsuario = $_SESSION['idUser'];
 					$strIdentificacion = strClean($_POST['txtIdentificacion']);
 					$strNombre = strClean($_POST['txtNombre']);
-					$strApellido = strClean($_POST['txtApellido']);
+					$strApellido = strClean($_POST['txtApellido']); //equivalencias de datos con el html
 					$intTelefono = intval(strClean($_POST['txtTelefono']));
 					$strPassword = "";
 					if(!empty($_POST['txtPassword'])){
@@ -205,7 +205,7 @@
 																$strNombre,
 																$strApellido, 
 																$intTelefono, 
-																$strPassword);
+																$strPassword); //envio de datos al modelo para ser actualizados
 					if($request_user)
 					{
 						sessionUser($_SESSION['idUser']);
@@ -219,7 +219,7 @@
 			die();
 		}
 
-		public function putDFical(){
+		public function putDFical(){ //funcion de actualizacion de datos 
 			if($_POST){
 				if(empty($_POST['txtNit']) || empty($_POST['txtNombreFiscal']) || empty($_POST['txtDirFiscal']) )
 				{
@@ -232,7 +232,7 @@
 					$request_datafiscal = $this->model->updateDataFiscal($idUsuario,
 																		$strNit,
 																		$strNomFiscal, 
-																		$strDirFiscal);
+																		$strDirFiscal); //envio de datos al modelo para ser actualizados
 					if($request_datafiscal)
 					{
 						sessionUser($_SESSION['idUser']);

@@ -4,7 +4,7 @@ class Productos extends Controllers
 
 	// -------------------------------------------------CONSTRUCTOR--------------------------------------------------------
 
-	public function __construct()
+	public function __construct() //funcion del controlador que instancia las funciones, en la cual detecta la sesion del usuario
 	{
 		parent::__construct();
 		session_start();
@@ -24,7 +24,7 @@ class Productos extends Controllers
 		}
 		$data['page_tag'] = "Productos";
 		$data['page_title'] = "Productos";
-		$data['page_name'] = "productos";
+		$data['page_name'] = "productos";  //determina los campos de la tabla de titular y relfleja que funcion de ajax necesita y el retorno de la vista
 		$data['page_functions_js'] = "functions_productos.js";
 		$this->views->getView($this, "productos", $data);
 	}
@@ -75,7 +75,7 @@ class Productos extends Controllers
 				$strNOMBRE_PRODUCTO = strClean($_POST['txtNombre']);
 				$strBarcodigo = intval($_POST['txtBARCODIGO']);
 				$intCOD_CATEGORIA = intval($_POST['listCategoria']);
-				$strDESCRIPCION = strClean($_POST['txtDescripcion']);
+				$strDESCRIPCION = strClean($_POST['txtDescripcion']); //equivalencia de datos con el formulario html
 				$intPRECIO = strClean($_POST['txtPrecio']);
 				$intPRECIOVenta = strClean($_POST['txtPrecioVenta']);
 				$intEXISTENCIA = intval($_POST['txtStock']);
@@ -86,7 +86,7 @@ class Productos extends Controllers
 				if ($idProducto == 0) {
 					$option = 1;
 					if ($_SESSION['permisosMod']['w']) {
-						$request_producto = $this->model->insertProducto(
+						$request_producto = $this->model->insertProducto( //envio de datos al modelo para ser insertados
 							$strNOMBRE_PRODUCTO,
 							$strBarcodigo,
 							$intCOD_CATEGORIA,
@@ -102,8 +102,8 @@ class Productos extends Controllers
 				} else {
 					$option = 2;
 					if ($_SESSION['permisosMod']['u']) {
-						$request_producto = $this->model->updateProducto(
-							$idProducto,
+						$request_producto = $this->model->updateProducto(//envio de datos al modelo para ser actualizados
+							$idProducto, 
 							$strBarcodigo,
 							$strNOMBRE_PRODUCTO,
 							$intCOD_CATEGORIA,
@@ -214,7 +214,7 @@ class Productos extends Controllers
 	}
 
 	// ---------------------------------------BUSCAR PRODUCTO DESDE LOCAL STORAGE - JAHIR----------------------------------------
-	public function mostrarDatos()
+	public function mostrarDatos() //funcion que muestra los datos del producto en compra y cotizacion para el registro en ella
 	{
 		$json = file_get_contents('php://input');
 		$datos = json_decode($json, true);
@@ -243,7 +243,7 @@ class Productos extends Controllers
 		die();
 	}
 
-	public function mostrarDatosVentas()
+	public function mostrarDatosVentas() //funcion que muestra los datos del producto en ventas para el registro en ella
 	{
 		$json = file_get_contents('php://input');
 		$datos = json_decode($json, true);

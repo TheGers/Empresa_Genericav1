@@ -1,6 +1,6 @@
 <?php
 	class Categorias extends Controllers{
-		public function __construct()
+		public function __construct() //constructor del controlador con funciones de validacion de login de usuario y permiso ortogado
 		{
 			parent::__construct();
 			session_start();
@@ -19,13 +19,13 @@
 				header("Location:".base_url().'/dashboard');
 			}
 			$data['page_tag'] = "Categorias";
-			$data['page_title'] = "CATEGORIAS";
+			$data['page_title'] = "CATEGORIAS"; // funcion que da funcion al titulo y mandando a llamar del ajax y vista
 			$data['page_name'] = "categorias";
 			$data['page_functions_js'] = "functions_categorias.js";
 			$this->views->getView($this,"categorias",$data);
 		}
 
-		public function setCategoria(){
+		public function setCategoria(){//funcion de insertar datos
 			if($_POST){
 				if(empty($_POST['txtNombre']) || empty($_POST['txtDescripcion']) || empty($_POST['listStatus']) )
 				{
@@ -34,7 +34,7 @@
 					
 					$intIdcategoria = intval($_POST['idCategoria']);
 					$strCategoria =  strClean($_POST['txtNombre']);
-					$strDescipcion = strClean($_POST['txtDescripcion']);
+					$strDescipcion = strClean($_POST['txtDescripcion']); //equivalencia de datos con el formulario html
 					$intStatus = intval($_POST['listStatus']);
 
 					$foto   	 	= $_FILES['foto'];
@@ -50,13 +50,13 @@
 					if($intIdcategoria == 0)
 					{
 						//Crear
-						if($_SESSION['permisosMod']['w']){
+						if($_SESSION['permisosMod']['w']){ //envio de datos al modelo para ser insertados
 							$request_cateria = $this->model->inserCategoria($strCategoria, $strDescipcion,$imgPortada,$intStatus);
 							$option = 1;
 						}
 					}else{
 						//Actualizar
-						if($_SESSION['permisosMod']['u']){
+						if($_SESSION['permisosMod']['u']){ //envio de datos al modelo para ser actualizados
 							if($nombre_foto == ''){
 								if($_POST['foto_actual'] != 'portada_categoria.png' && $_POST['foto_remove'] == 0 ){
 									$imgPortada = $_POST['foto_actual'];
@@ -68,7 +68,7 @@
 					}
 					if($request_cateria > 0 )
 					{
-						if($option == 1)
+						if($option == 1) //determinacion del estado
 						{
 							$arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
 							if($nombre_foto != ''){ uploadImage($foto,$imgPortada); }
@@ -92,10 +92,10 @@
 			die();
 		}
 
-		public function getCategorias()
+		public function getCategorias() //funcion que muestra los datos
 		{
 			if($_SESSION['permisosMod']['r']){
-				$arrData = $this->model->selectCategorias();
+				$arrData = $this->model->selectCategorias(); //envio de datos al modelo
 				for ($i=0; $i < count($arrData); $i++) {
 					$btnView = '';
 					$btnEdit = '';
@@ -105,10 +105,10 @@
 					{
 						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
 					}else{
-						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+						$arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>'; //determina el estado
 					}
-
-					if($_SESSION['permisosMod']['r']){
+ 
+					if($_SESSION['permisosMod']['r']){ //botones de ejecuciones 
 						$btnView = '<button class="btn btn-info btn-sm" onClick="fntViewInfo('.$arrData[$i]['idcategoria'].')" title="Ver categoría"><i class="far fa-eye"></i></button>';
 					}
 					if($_SESSION['permisosMod']['u']){
@@ -125,12 +125,12 @@
 		}
 
 		public function getCategoria($idcategoria)
-		{
+		{//funcion que trae los datos por id
 			if($_SESSION['permisosMod']['r']){
 				$intIdcategoria = intval($idcategoria);
 				if($intIdcategoria > 0)
 				{
-					$arrData = $this->model->selectCategoria($intIdcategoria);
+					$arrData = $this->model->selectCategoria($intIdcategoria); //envio de datos al modelo
 					if(empty($arrData))
 					{
 						$arrResponse = array('status' => false, 'msg' => 'Datos no encontrados.');
@@ -144,9 +144,9 @@
 			die();
 		}
 
-		public function delCategoria()
+		public function delCategoria() //funcion que elimina la categoria
 		{
-			if($_POST){
+			if($_POST){ 
 				if($_SESSION['permisosMod']['d']){
 					$intIdcategoria = intval($_POST['idCategoria']);
 					$requestDelete = $this->model->deleteCategoria($intIdcategoria);

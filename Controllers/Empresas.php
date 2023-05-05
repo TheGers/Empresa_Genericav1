@@ -2,7 +2,7 @@
 class Empresas extends Controllers
 {
 	
-	public function __construct()
+	public function __construct() //funcion del controlador que instancia las funciones, en la cual detecta la sesion del usuario
 	{
 		parent::__construct();
 			session_start();
@@ -20,7 +20,7 @@ class Empresas extends Controllers
 		}
 		$data['page_tag'] = "Empresas";
 		$data['page_title'] = "empresas";
-		$data['page_name'] = "empresas";
+		$data['page_name'] = "empresas"; //determina los campos de la tabla de titular y relfleja que funcion de ajax necesita y el retorno de la vista
 		$data['page_functions_js'] = "empresa.js";
         $data['empresa'] = $this->model->getEmpresas();
 		$this->views->getView($this,"empresas", $data);
@@ -28,7 +28,7 @@ class Empresas extends Controllers
 	}
 
 
-    public function setEmpresas(){
+    public function setEmpresas(){ //inserccion de nuevos datos a la informacion de la empresa
         $RTN = strClean($_POST['rtn']);
         $nombre = strClean($_POST['nombre']);
         $telefono = strClean($_POST['telefono']);
@@ -42,13 +42,13 @@ class Empresas extends Controllers
         if($id == 0)
         {
             //Crear
-            if($_SESSION['permisosMod']['w']){
+            if($_SESSION['permisosMod']['w']){ //envio de datos al modelo para ser insertados
                 $request_Empresa = $this->model->InsertarEmpresas($RTN, $nombre,$telefono,$correo, $direccion,$descripcion,$mensaje);
                 $option = 1;
             }
         }else{
             //Actualizar
-            if($_SESSION['permisosMod']['u']){
+            if($_SESSION['permisosMod']['u']){ //envio de datos al modelo para ser  actualizados
                 $request_Empresa = $this->model->UptadeEmpresas($id,$RTN, $nombre,$telefono,$correo, $direccion,$descripcion,$mensaje);
                 $option = 2;
             }		
