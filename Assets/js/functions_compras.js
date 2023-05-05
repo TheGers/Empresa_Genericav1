@@ -1,4 +1,4 @@
-// -------------------------------------------------CAPTURACION - JAHIR----------------------------------------------------
+// -------------------------------------------------CAPTURACION DE LA FUNCION COMPRA- BAYRON----------------------------------------------------
 
 const inputBuscarCodigo = document.querySelector("#buscarProductoCodigo");
 const inputBuscarNombre = document.querySelector("#buscarProductoNombre");
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
     order: [[0, "desc"]],
   });
 
-  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - JAHIR-------------------------------------------
+  // -------------------------------------------------AUTO COMPLETAR PRODUCTO - BAYRON-------------------------------------------
   $("#buscarProductoNombre").autocomplete({
     source: function (request, response) {
       $.ajax({
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - JAHIR------------------------------------------
+// ---------------------------------------BUSCAR PRODUCTO POR MEDIO DE CODIGO (COD_PRODUCTO) - BAYRON------------------------------------------
 
 function buscarProducto(valor) {
   const url = base_url + "/productos/buscarPorCodigo/" + valor;
@@ -223,7 +223,7 @@ function buscarProducto(valor) {
   };
 }
 
-// ------------------------------------------LISTAR PROVEEDORES EN EL SELECTOR DE COMPRAS-------------------------------------------
+// ------------------------------------------LISTAR PROVEEDORES EN EL SELECTOR DE COMPRAS - BAYRON-------------------------------------------
 
 function fntPersonas() {
   if (document.querySelector("#listProveedor")) {
@@ -243,7 +243,7 @@ function fntPersonas() {
   }
 }
 
-// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - JAHIR----------------------------------------------
+// ----------------------------------------------AGREGAR PRODUCTOS A LocalStorage - BAYRON----------------------------------------------
 
 function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   if (localStorage.getItem("posCompra") == null) {
@@ -270,7 +270,7 @@ function agregarProducto(COD_PRODUCTO, EXISTENCIA) {
   mostrarProducto();
 }
 
-// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - JAHIR--------------------------
+// ------------------------------------ALERTA PERSONALIZADA DE AGREGAR PRODUCTOS - BAYRON--------------------------
 
 function alertaPersonalizada(type, msg) {
   Swal.fire({
@@ -283,7 +283,7 @@ function alertaPersonalizada(type, msg) {
   });
 }
 
-// ------------------------------------CARGAR PRODUCTOS - JAHIR----------------------------------
+// ------------------------------------CARGAR PRODUCTOS - BAYRON----------------------------------
 
 function mostrarProducto() {
   if (localStorage.getItem("posCompra") != null) {
@@ -326,7 +326,7 @@ function mostrarProducto() {
   }
 }
 
-// ------------------------------------BTN ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------BTN ELIMINAR PRODUCTO - BAYRON------------------------------------------
 function btneliminarProducto() {
   let lista = document.querySelectorAll(".btnEliminar");
   for (let i = 0; i < lista.length; i++) {
@@ -338,7 +338,7 @@ function btneliminarProducto() {
   }
 }
 
-// ------------------------------------ELIMINAR PRODUCTO - JAHIR------------------------------------------
+// ------------------------------------ELIMINAR PRODUCTO - BAYRON------------------------------------------
 
 function eliminarProducto(idProducto) {
   for (let i = 0; i < listaCarrito.length; i++) {
@@ -422,3 +422,6 @@ function anularCompra(COD_COMPRA) {
     }
   })
 }
+
+// -----------------------Funcion para las compras--------------------------->
+// -----------------------Creado por Bayron Meraz--------------------------->

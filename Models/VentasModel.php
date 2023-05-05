@@ -1,9 +1,12 @@
+<!-- -----------------------Modelo para las ventas--------------------------->
+<!-- -----------------------Creado por Edwin Juanez--------------------------->
+
 <?php
 
 class VentasModel extends Mysql
 {
 
-
+ 
     private $intCOD_VENTA;
     private $intCOD_PERSONA;
     private $strNUMERO_FACTURA;
@@ -35,7 +38,7 @@ class VentasModel extends Mysql
         return $this->insert($sql, $array);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------------------
+    // -----------------------------------Selecionar las ventas------------------------------------------------------------
 
     public function selectVentas()
     {
@@ -54,7 +57,7 @@ class VentasModel extends Mysql
         return $request;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------------------
+    // ----------------------------------Incsertar ventas---------------------------------------------------------------------
 
     public function insertVentas(
         int $intCOD_VENTA,
@@ -98,7 +101,7 @@ class VentasModel extends Mysql
         return $return;
     }
 
-    // -----------------------------------------------------------------------------------------------------------------------------
+    // -----------------------------Seleccionar una sola venta-----------------------------------------------------------------------
     public function selectVenta(int $intCOD_VENTA)
     {
         $sql = "SELECT c.COD_VENTA,
@@ -116,7 +119,7 @@ class VentasModel extends Mysql
         return $request;
     }
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - EDWIN JUANEZ --------------------------------------------------
 
     public function getEmpresa()
     {
@@ -124,14 +127,14 @@ class VentasModel extends Mysql
         return $this->select($sql);
     }
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - EDWIN JUANEZ --------------------------------------------------
     public function getVenta($COD_VENTA)
     {
         $sql = "SELECT c.*, p.NOMBRE, p.IDENTIFICACION FROM tbl_ventas c INNER JOIN tbl_personas p ON c.COD_PERSONA = p.COD_PERSONA WHERE c.COD_VENTA = $COD_VENTA";
         return $this->select($sql);
     }
 
-    // -------------------------------------------MODELO PARA RESTAR STOCK - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA RESTAR STOCK - EDWIN JUANEZ --------------------------------------------------
 
     public function actualizarStock($EXISTENCIA, $COD_PRODUCTO)
     {
@@ -146,7 +149,7 @@ class VentasModel extends Mysql
          return $this->select($sql);
      }
 
-// -------------------------------------------MODELO PARA ANULAR STOCK - BAYRON --------------------------------------------------
+// -------------------------------------------MODELO PARA ANULAR STOCK - EDWIN JUANEZ --------------------------------------------------
 public function anular($COD_VENTA){
     $sql = "UPDATE tbl_ventas SET status = ? WHERE COD_VENTA = ? ";
     $array = array(0,$COD_VENTA);
@@ -155,5 +158,7 @@ public function anular($COD_VENTA){
 
 }
 
+    // -------------------------------------------Modelo para las ventas--------------------------------------------------
+    // -------------------------------------------Creado por Edwin Juanez --------------------------------------------------
 
 }

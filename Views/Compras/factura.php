@@ -1,3 +1,6 @@
+<!-- -----------------------Formato de impresion para las compras--------------------------->
+<!-- -----------------------Creado por Bayron Meraz--------------------------->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,7 @@
     <title><?php echo $data['title']; ?> </title>
     <link rel="stylesheet" href="<?php echo BASE_URL . '/assets/css/factura.css'; ?>">
 </head>
-
+<!-- -----------------------Tabla que muestra los datos que se extraen de la tabla empresa--------------------------->
 <body>
     <table id="datos-empresa">
         <tr>
@@ -28,8 +31,7 @@
             </td>
         </tr>
     </table>
-
-
+<!-- -----------------------Tabla que muestra los datos de el proveedor--------------------------->
     <h5 class="title">Datos del Proveedor</h5>
     <table id="container-info">
         <tr>
@@ -43,6 +45,7 @@
             </td>
         </tr>
     </table>
+<!-- -----------------------Tabla que muestra los productos que se compraron--------------------------->    
     <h5 class="title">Detalle de los Producto</h5>
     <table id="container-producto">
         <thead>
@@ -53,6 +56,7 @@
                 <th>SubTotal</th>
             </tr>
         </thead>
+<!-- -----------------------Aqui se extraen los datos que se generaron en la compra (Subtotal, Impuesto, total)--------------------------->         
         <tbody>
             <?php
             $productos = json_decode($data['compra']['DESCRIPCION'], true);
@@ -61,11 +65,15 @@
             $iSV = $data['compra']['TOTAL'] - $subTotal;
             $total = $data['compra']['TOTAL'];
 
+//------------------Codigo no utilizado, pero para futuro se puede dejar ----------------------------
+
             //ISV NO Incluido
             // $subTotal = $data['compra']['TOTAL'];
             // $ISV = $subTotal * 0.18;
             // $TOTAL = $subTotal + $ISV;
 
+
+//------------------Se recorre el array de los productos para poder ingresarlos a la tabla ----------------------------
             foreach ($productos as $producto) { ?>
                 <tr>
                     <td><?php echo $producto['EXISTENCIA']; ?></td>
@@ -88,6 +96,8 @@
             </tr>
         </tbody>
     </table>
+ 
+<!-- -----------------------Mensaje se mesutra una vez que se anula las compras--------------------------->     
     <div class="mensaje">
         <?php echo $data['empresa']['mensaje']; ?>
         <?php if ($data['compra']['status'] == 0) { ?>
@@ -95,5 +105,6 @@
         <?php } ?>
     </div>
 </body>
-
+<!-- -----------------------Formato de impresion para las compras--------------------------->
+<!-- -----------------------Creado por Bayron Meraz--------------------------->
 </html>

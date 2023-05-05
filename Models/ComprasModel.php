@@ -1,3 +1,6 @@
+<!-- -----------------------Modelo para las compras--------------------------->
+<!-- -----------------------Creado por Bayron Meraz--------------------------->
+
 <?php
 
 class ComprasModel extends Mysql
@@ -141,7 +144,7 @@ class ComprasModel extends Mysql
         return $request;
     }
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - BAYRON --------------------------------------------------
 
     public function getEmpresa()
     {
@@ -149,7 +152,7 @@ class ComprasModel extends Mysql
         return $this->select($sql);
     }
 
-    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA TRABAHAR EL PDF - BAYRON --------------------------------------------------
     public function getCompra($COD_COMPRA)
     {
         //$sql = "SELECT c.*, p.NOMBRE, p.IDENTIFICACION FROM tbl_compras c INNER JOIN tbl_personas p ON c.COD_PERSONA WHERE c.COD_COMPRA = $COD_COMPRA";
@@ -157,7 +160,7 @@ class ComprasModel extends Mysql
         return $this->select($sql);
     }
 
-    // -------------------------------------------MODELO PARA SUMAR STOCK - JAHIR --------------------------------------------------
+    // -------------------------------------------MODELO PARA SUMAR STOCK - BAYRON --------------------------------------------------
 
       public function actualizarStock($EXISTENCIA, $COD_PRODUCTO)
       {
@@ -172,12 +175,15 @@ class ComprasModel extends Mysql
         $array = array(0,$COD_COMPRA);
         return $this->update($sql,$array);
       }
-
+// -------------------------------------------REGISTRA LOS MOVIMIENTOS EN INVENTARIO - BAYRON --------------------------------------------------
       public function registrarMovimiento($COD_PRODUCTO, $movimiento, $EXISTENCIA, $fecha, $idPersona)
     {
         $sql = "INSERT INTO tbl_inventario (COD_PRODUCTO, movimiento, EXISTENCIA, FECHA, COD_PERSONA) VALUES (?,?,?,?,?)";
         $array = array($COD_PRODUCTO, $movimiento, $EXISTENCIA, $fecha, $idPersona);
         return $this->insert($sql, $array);
     }
+
+    // -------------------------------------------Modelo para las compras--------------------------------------------------
+    // -------------------------------------------Creado por Bayron Meraz --------------------------------------------------
 
  }
