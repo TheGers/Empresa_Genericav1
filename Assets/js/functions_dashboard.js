@@ -46,7 +46,7 @@ function fntSearchVMes() {
         request.onreadystatechange = function () {
             if (request.readyState != 4) return;
             if (request.status == 200) {
-                $("#graficaMes").html(request.responseText);
+                $("#graficaMes").html(request.responseText);//Nombre que se le asigno a la grafica 
                 divLoading.style.display = "none";
                 return false;
             }

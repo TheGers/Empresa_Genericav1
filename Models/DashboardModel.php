@@ -25,13 +25,13 @@
 		{
 			parent::__construct();
 		}	
-        
+        //funcion para la sumatoria de cada modulo 
     public function getTotales($table)
     {
         $sql = "SELECT COUNT(*) AS total FROM $table WHERE status = 1";
         return $this->select($sql);
     }
-
+//funcion para saber las ultimas ventas del dia
 	public function lastOrders(){
 		$sql = "SELECT p.COD_VENTA, CONCAT(pr.NOMBRE) as NOMBRE, p.TOTAL,p.NUMERO_FACTURA, p.status 
 				FROM tbl_ventas p
@@ -41,6 +41,7 @@
 		$request = $this->select_all($sql);
 		return $request;
 	}
+	//Funcion para saber el total de los productos vendidos al dia 
 	public function selectProductosT(int $anio, int $mes, int $dia){
 		
 		$sql = "SELECT  p.NOMBRE_PRODUCTO, SUM(p.EXISTENCIA) as existencias 
@@ -52,6 +53,7 @@
 		$arrData = array('anio' => $anio, 'mes' => $meses[intval($mes-1)],'dia' => $dia,  'Vendidos' => $pagos );
 		return $arrData;
 	}
+	//Funcion para saber el total de los Ventas del mes 
 	public function selectVentasMes(int $anio, int $mes){
 		$totalVentasMes = 0;
 		$arrVentaDias = array();
@@ -75,6 +77,7 @@
 		$arrData = array('anio' => $anio, 'mes' => $meses[intval($mes-1)], 'total' => $totalVentasMes,'ventas' => $arrVentaDias );
 		return $arrData;
 	}
+		//Funcion para saber el total de los Ventas del año
 	public function selectVentasAnio(int $anio){
 		$arrMVentas = array();
 		$arrMeses = Meses();

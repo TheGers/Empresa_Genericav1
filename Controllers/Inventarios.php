@@ -1,4 +1,34 @@
 <?php
+/* -----------------------------------------------------------------------
+Universidad Nacional Autonoma de Honduras (UNAH)
+	Facultad de Ciencias Economicas
+Departamento de Informatica administrativa
+	 Analisis, Programacion y Evaluacion de Sistemas
+				Primer Periodo 2023
+
+
+Equipo:
+Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+
+
+
+Catedratico:
+Lic. Karla Melisa Garcia Pineda 
+
+--------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Programa:        Modulo de inventario
+Fecha:             23-febrero-2023
+Programador:       Edwin Juanez
+descripcion:      Registro para lo de Inventario
+-----------------------------------------------------------------------
+--------------------------------------------------------------------- */
 class Inventarios extends Controllers
 {
 	

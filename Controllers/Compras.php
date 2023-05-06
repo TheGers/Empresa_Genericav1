@@ -4,7 +4,37 @@ require 'vendor/autoload.php';
 use Dompdf\Dompdf;
 
 use function PHPSTORM_META\type;
+/* -----------------------------------------------------------------------
+Universidad Nacional Autonoma de Honduras (UNAH)
+	Facultad de Ciencias Economicas
+Departamento de Informatica administrativa
+	 Analisis, Programacion y Evaluacion de Sistemas
+				Primer Periodo 2023
 
+
+Equipo:
+Gerson David Garcia Calderon ........( gerson.garcia@unah.hn)
+Elsy Yohana Maradiaga Lazo...........( elsy.maradiaga@unah.hn)
+Miguel Alejandro Cardenas Amaya......(mcardenasa@unah.hn)
+Edwin Jahir Juanez Ayala.............(edinjuanez@unah.hn)
+Bayron Alberto Meraz Dubon...........(bayronmeraz@unah.hn)
+
+
+
+Catedratico:
+Lic. Karla Melisa Garcia Pineda 
+
+--------------------------------------------------------------------- */
+/* -----------------------------------------------------------------------
+---------------------------------------------------------------------
+
+Programa:         Modulo de Compras
+Fecha:             23-febrero-2023
+Programador:       Bayron Meraz
+descripcion:       Registra las compras realizadas por la empresa
+
+-----------------------------------------------------------------------
+--------------------------------------------------------------------- */
 class Compras extends Controllers
 {
 	private $idPersona;

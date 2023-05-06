@@ -17,5 +17,5 @@ codigo, llamado de la manera: bd_empresa_generica.sql
 Todas las funciones del sistema se encuentran en una fase muy temprana, se sigue en proceso de 
 incoporar nuevas funciones, la unica excepcion de que en el sistema no funcionara es la recuperacion
 de contraseña por medio de correo electronico, esta solamente funciona mediante hosting por temas del smtp
-
+https://empresagenerica.com/
 
