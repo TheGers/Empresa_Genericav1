@@ -49,7 +49,7 @@
 				}else{
 					$strUsuario  =  strtolower(strClean($_POST['txtUsername']));
 					$strPassword = hash("SHA256",$_POST['txtPassword']);
-					$requestUser = $this->model->loginUser($strUsuario, $strPassword);
+					$requestUser = $this->model->loginUser($strUsuario, $strPassword); //llamado del model con parametros
 					if(empty($requestUser)){
 						$arrResponse = array('status' => false, 'msg' => 'El usuario o la contraseña es incorrecto.' ); 
 					}else{
@@ -57,16 +57,16 @@
 						if($arrData['status'] == 1){
 							$_SESSION['idUser'] = $arrData['idpersona'];
 							$_SESSION['login'] = true;
-							$evento = 'Inicio de Sesión';
+							$evento = 'Inicio de Sesión'; 
 							$ip = $_SERVER['REMOTE_ADDR'];
 							$detalle = $_SERVER['HTTP_USER_AGENT'];
-							$acceso = $this->model->registrarAcceso($evento, $ip, $detalle);
+							$acceso = $this->model->registrarAcceso($evento, $ip, $detalle); //registro del dispositivo por el cual se registra
 							if ($acceso > 0) {
 								$arrResponse = array('msg' => 'DATOS CORRECTO', 'type' => 'success');
 							} else {
 								$arrResponse = array('msg' => 'ERROR AL CAPTURAR LOS DATOS DEL INICIO', 'type' => 'error');
 							}  
-							$arrData = $this->model->sessionLogin($_SESSION['idUser']);
+							$arrData = $this->model->sessionLogin($_SESSION['idUser']); //validacion de inicio de sesion
 							sessionUser($_SESSION['idUser']);							
 							$arrResponse = array('status' => true, 'msg' => 'ok');
 						}else{
@@ -96,7 +96,7 @@
 						    $nombreUsuario = $arrData['nombres'].' '.$arrData['apellidos'];
 						
 						    $url_recovery = base_url().'/login/confirmUser/'.$strEmail.'/'.$token;
-						    $requestUpdate = $this->model->setTokenUser($idpersona,$token);
+						    $requestUpdate = $this->model->setTokenUser($idpersona,$token); //llamado del model para el token
 							$dataUsuario = array('nombreUsuario' => $nombreUsuario,
 											 'email' => $strEmail,
 											 'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
@@ -132,7 +132,7 @@
 				header('Location: '.base_url());
 			}else{
 				$arrParams = explode(',',$params);
-				$strEmail = strClean($arrParams[0]);
+				$strEmail = strClean($arrParams[0]);//limpieza de los parametros del usuario al ser confirmado
 				$strToken = strClean($arrParams[1]);
 	
 				$arrResponse = $this->model->getUsuario($strEmail,$strToken);
@@ -140,7 +140,7 @@
 					header("Location: ".base_url());
 				}else{
 					$data['page_tag'] = "Cambiar contraseña";
-					$data['page_name'] = "cambiar_contrasenia";
+					$data['page_name'] = "cambiar_contrasenia";  //funcion de titualres y funciones de ajax y vista al usar
 					$data['page_title'] = "Cambiar Contraseña";
 					$data['email'] = $strEmail;
 					$data['token'] = $strToken;
@@ -153,7 +153,7 @@
 				die();
 		}
 
-		public function setPassword(){
+		public function setPassword(){ //funcion de cambio de contraseña
 
 			if(empty($_POST['idUsuario']) || empty($_POST['txtEmail']) || empty($_POST['txtToken']) || empty($_POST['txtPassword']) || empty($_POST['txtPasswordConfirm'])){
 
@@ -163,7 +163,7 @@
 			else{
 					$intIdpersona = intval($_POST['idUsuario']);
 					$strPassword = $_POST['txtPassword'];
-					$strPasswordConfirm = $_POST['txtPasswordConfirm'];
+					$strPasswordConfirm = $_POST['txtPasswordConfirm']; //equivalencia de datos globales al formulario 
 					$strEmail = strClean($_POST['txtEmail']);
 					$strToken = strClean($_POST['txtToken']);
 
@@ -171,14 +171,14 @@
 						$arrResponse = array('status' => false, 
 											 'msg' => 'Las contraseñas no son iguales.' );
 					}else{
-						$arrResponseUser = $this->model->getUsuario($strEmail,$strToken);
+						$arrResponseUser = $this->model->getUsuario($strEmail,$strToken);//llamado del modelo 
 						if(empty($arrResponseUser)){
 							$arrResponse = array('status' => false, 
 											 'msg' => 'Erro de datos.' );
 						}
 						else{
 							$strPassword = hash("SHA256",$strPassword);
-							$requestPass = $this->model->insertPassword($intIdpersona,$strPassword);
+							$requestPass = $this->model->insertPassword($intIdpersona,$strPassword); //llamado del modelo
 
 							if($requestPass){
 								$arrResponse = array('status' => true, 
