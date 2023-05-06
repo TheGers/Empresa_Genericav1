@@ -12,7 +12,7 @@
 			parent::__construct();
 		}
 
-		public function selectRoles()
+		public function selectRoles() //funcion de seleccion de datos
 		{
 			$whereAdmin = "";
 			if($_SESSION['idUser'] != 1 ){
@@ -24,7 +24,7 @@
 			return $request;
 		}
 
-		public function selectRol(int $idrol)
+		public function selectRol(int $idrol) //Funcion que selecciona los datos por medio del id
 		{
 			//BUSCAR ROLE
 			$this->intIdrol = $idrol;
@@ -33,6 +33,7 @@
 			return $request;
 		}
 
+		//Funcion para insertar los roles 
 		public function insertRol(string $rol, string $descripcion, int $status){
 
 			$return = "";
@@ -55,6 +56,7 @@
 			return $return;
 		}	
 
+		//FUncion para actualizar los roles
 		public function updateRol(int $idrol, string $rol, string $descripcion, int $status){
 			$this->intIdrol = $idrol;
 			$this->strRol = $rol;
@@ -75,6 +77,7 @@
 		    return $request;			
 		}
 
+		//Funcion para eliminar los roles
 		public function deleteRol(int $idrol)
 		{
 			$this->intIdrol = $idrol;

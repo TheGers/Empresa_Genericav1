@@ -26,6 +26,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 //Controlador del Modulo roles
 	class Roles extends Controllers{
 
+		//constructor del controlador con funciones de validacion de login de usuario y permiso ortogado
 		public function __construct()
 		{
 			parent::__construct();
@@ -51,7 +52,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 			$this->views->getView($this,"roles",$data);
 		}
 
-
+		//Obtiene los registros de los roles en la base de datos
 		public function getRoles()
 		{
 			if($_SESSION['permisosMod']['r']){
@@ -62,6 +63,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 
 				for ($i=0; $i < count($arrData); $i++) {
 
+					//Arreglos para mostar el estado de cada registro
 					if($arrData[$i]['status'] == 1)
 					{
 						$arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
@@ -83,7 +85,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 			}
 			die();
 		}
-
+ 
 		public function getSelectRoles()
 		{
 			$htmlOptions = "";
@@ -99,6 +101,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 			die();		
 		}
 
+		//Funcion que selecciona un rol segun su id de registro
 		public function getRol(int $idrol)
 		{
 			if($_SESSION['permisosMod']['r']){
@@ -157,6 +160,7 @@ descripcion:       Modulo que asigna los roles de usuarios
 			die();
 		}
 
+		//Funcion para eliminar roles segun el id de registro 
 		public function delRol()
 		{
 			if($_POST){

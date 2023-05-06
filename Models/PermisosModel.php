@@ -1,5 +1,6 @@
 <?php 
 
+
 	class PermisosModel extends Mysql
 	{
 		public $intIdpermiso;
@@ -15,12 +16,15 @@
 			parent::__construct();
 		}
 
+		//Funcion que sleeciona el modulo al cual se le asignara el permiso 
 		public function selectModulos()
 		{
 			$sql = "SELECT * FROM tbl_ms_modulo WHERE status != 0";
 			$request = $this->select_all($sql);
 			return $request;
 		}	
+
+		//Selecciona el rol que seleciona el rol al cual se le asignaran los permisos
 		public function selectPermisosRol(int $idrol)
 		{
 			$this->intRolid = $idrol;
@@ -29,6 +33,7 @@
 			return $request;
 		}
 
+		//Funcion  para elinar los permisos asignado a cada rol
 		public function deletePermisos(int $idrol)
 		{
 			$this->intRolid = $idrol;
@@ -37,6 +42,7 @@
 			return $request;
 		}
 
+		//Inserta los permisos para asignaran
 		public function insertPermisos(int $idrol, int $idmodulo, int $r, int $w, int $u, int $d){
 			$this->intRolid = $idrol;
 			$this->intModuloid = $idmodulo;
@@ -50,6 +56,7 @@
 	        return $request_insert;
 		}
 
+		//Inserta los permisos para cada modulo
 		public function permisosModulo(int $idrol){
 			$this->intRolid = $idrol;
 			$sql = "SELECT p.rolid,
