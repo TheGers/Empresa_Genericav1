@@ -15,6 +15,10 @@ tableBitacoras = $('#tableBitacoras').dataTable( {
     "columns":[
         {"data":"id"},
             {"data":"accion"},
+            {"data":"vista"},
+            {"data":"campo"},
+            {"data":"dato_anterior"},
+            {"data":"nuevo_dato"},
             {"data":"FECHA_CREACION"},
             {"data":"CREADO_POR"}, //varibles a mostrar en el data table
             {"data":"MODIFICADO_POR"},

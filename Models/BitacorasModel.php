@@ -18,6 +18,10 @@
 		{
 			$sql = "SELECT  id,
 							accion,
+							vista,
+							campo,
+							dato_anterior,
+							nuevo_dato,
 							FECHA_CREACION,
 							CREADO_POR,
 							MODIFICADO_POR,

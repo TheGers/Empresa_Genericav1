@@ -27,9 +27,13 @@
                         <tr>
                           <th>ID</th>
                           <th>ACCION</th>
+                          <th>Vista</th>
+                          <th>Campo</th>
+                          <th>Dato anterior</th>
+                          <th>Nuevo Dato</th>
                           <th>FECHA CREACION</th>
-                          <th>CREADO POR EL USUARIO</th>
-                          <th>MODIFICADO POR EL USUARIO</th>
+                          <th>USUARIO</th>
+                          <th>Editado por</th>
                           <th>FECHA DE MODIFICACION</th>
                           <th>ESTADO</th>
                         
